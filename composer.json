@@ -1,0 +1,37 @@
+{
+    "name": "devkabir/wordpress-plugin",
+    "description": "A simple oop structure in the singleton pattern for a WordPress plugin.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Dev Kabir",
+            "email": "dev.kabir01@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "devkabir/plugin": "^1.0"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "wp-coding-standards/wpcs": "2.3.*"
+    },
+    "scripts": {
+        "lint": "phpcs --extensions=php -s -p",
+        "format": "phpcbf -p",
+        "post-create-project-cmd": [
+            "@php ./post-install.php"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "PluginPackage\\": "plugin/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
