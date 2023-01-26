@@ -14,8 +14,8 @@
         "devkabir/plugin": "^1.0"
     },
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-        "wp-coding-standards/wpcs": "2.3.*"
+        "10up/phpcs-composer": "dev-master",
+        "roots/wordpress-no-content": "^6.1"
     },
     "scripts": {
         "lint": "phpcs --extensions=php -s -p",
