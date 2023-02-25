@@ -14,7 +14,7 @@
         "devkabir/plugin": "^1.0"
     },
     "require-dev": {
-        "10up/phpcs-composer": "dev-master",
+        "automattic/vipwpcs": "^2.3",
         "roots/wordpress-no-content": "^6.1"
     },
     "scripts": {

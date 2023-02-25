@@ -22,6 +22,7 @@ function seek_and_destroy( $dir ): void {
 		$contents = file_get_contents( $dir );
 		$search   = array(
 			'your-plugin-name',
+			'your_plugin_name',
 			'PluginPackage',
 			'Your Plugin Name',
 			'@package    PluginPackage',
@@ -29,6 +30,7 @@ function seek_and_destroy( $dir ): void {
 		);
 		$replace  = array(
 			$base,
+			$underscore,
 			$namespace_for_file,
 			trim( $uc_words ),
 			"@package    $namespace_for_file",

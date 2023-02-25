@@ -9,6 +9,9 @@ read -r GITHUB_USER
 echo "Github Repository name"
 read -r GITHUB_REPOSITORY
 
+echo "Github Repository branch name"
+read -r GITHUB_REPOSITORY_BRANCH
+
 echo "Commit message"
 read -r COMMIT_MESSAGE
 
@@ -17,11 +20,7 @@ cd ./assets/admin && npm install && npm run build
 cd -
 cd ./assets/website && npm install && npm run build
 cd -
-mkdir -p ./"${GITHUB_REPOSITORY}"/assets/admin/ && cp -r -p ./assets/admin/dist ./"${GITHUB_REPOSITORY}"/assets/admin/
-mkdir -p ./"${GITHUB_REPOSITORY}"/assets/website/ && cp -r -p ./assets/website/dist ./"${GITHUB_REPOSITORY}"/assets/website/
-cp -r ./plugin ./"${GITHUB_REPOSITORY}"/
-cp ./composer.json ./"${GITHUB_REPOSITORY}"/
-cp ./*.php ./"${GITHUB_REPOSITORY}"/
+cp -R ./composer.json ./*.php plugin assets/admin/dist assets/website/dist ./"$GITHUB_REPOSITORY"/ --parents
 cd ./"${GITHUB_REPOSITORY}"
 composer install --no-dev
 rm composer.json
@@ -29,7 +28,7 @@ rm composer.lock
 
 git add .
 git commit -m "${COMMIT_MESSAGE}"
-git push origin main
+git push origin "${GITHUB_REPOSITORY_BRANCH}"
 
 cd -
 rm -rf ./assets/admin/dist ./assets/website/dist

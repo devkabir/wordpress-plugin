@@ -43,11 +43,11 @@
   </div>
 </template>
 <script>
-import {ref} from "vue";
-import OutfillBell from "./OutfillBell.vue";
-import OutfillBars from "./OutfillBars.vue";
-import OutlineX from "./OutlineX.vue";
-import WP from './WP.vue';
+import {ref}       from "vue";
+import OutfillBell from "./icons/OutfillBell.vue";
+import OutfillBars from "./icons/OutfillBars.vue";
+import OutlineX    from "./icons/OutlineX.vue";
+import WP          from './icons/WP.vue';
 export default {
   name: 'Navigation',
   components: {OutlineX, OutfillBars, OutfillBell, WP},

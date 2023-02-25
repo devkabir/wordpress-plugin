@@ -14,19 +14,18 @@ export default defineConfig({
         }),
     ],
     root: rootPath,
-    css: rootPath,    
+    css: rootPath,
     build: {
         outDir: resolve(__dirname, './dist'),
-        emptyOutDir:true,
-        minify: false,
+        emptyOutDir: true,
+        minify: true,
         cssCodeSplit: false,
         sourcemap: false,
         rollupOptions: {
             input: {
-                dolly: fileURLToPath(new URL('./shortcodes/dolly/index.html', import.meta.url)),
-                hello: fileURLToPath(new URL('./shortcodes/hello/index.html', import.meta.url)),
+                form: fileURLToPath(new URL('./shortcodes/form/index.html', import.meta.url)),
             },
-            output:{
+            output: {
                 assetFileNames: '[name][extname]',
                 entryFileNames: '[name].js'
             }

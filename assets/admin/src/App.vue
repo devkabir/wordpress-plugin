@@ -1,8 +1,8 @@
 <template>
 
-  <div class="mr-4 bg-slate-100">
+  <div class="mr-4 bg-slate-100 h-full-screen overflow-y-auto">
     <Navigation/>
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+    <div class="mx-auto shadow max-w-7xl py-6 sm:px-6 lg:px-8">
       <router-view/>
     </div>
   </div>

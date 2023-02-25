@@ -1,9 +1,10 @@
 module.exports = {
   plugins: {
+    'postcss-import': {},
     tailwindcss: {},
     autoprefixer: {},
-    'postcss-prefix-selector':{
-      prefix: '#wordpress_plugin'
+    'postcss-prefix-selector': {
+      prefix: '#devkabir-plugin'
     },
   },
 }

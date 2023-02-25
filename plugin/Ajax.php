@@ -18,7 +18,7 @@ final class Ajax extends Container {
 	/**
 	 * It sends a json success message.
 	 */
-	public function settings() {
+	public function settings(): void {
 		wp_send_json_success( 'Saved' );
 	}
 }

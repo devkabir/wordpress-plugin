@@ -2,9 +2,9 @@
 **Contributors:** devkabir  
 **Donate link:** https://example.com/  
 **Tags:** wordpress, plugin  
-**Requires at least:** 4.5  
+**Requires at least:** 5.3  
 **Tested up to:** 6.1.1  
-**Requires PHP:** 5.6  
+**Requires PHP:** 7.4  
 **Stable tag:** 1.0.0  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html
@@ -35,9 +35,21 @@ worrying about the underlying code structure.
 - By using a bash script, you can create a WordPress.org build package. As a result, your source code and production code will be distinct.
 - Jquery is supported by frontend scripts. If your developer is unfamiliar with vue.js, he can generate admin and website assets with jquery.
 - Shortcode generator can collect assets dynamically. All you have to do is pass shortcode tag in Shortcode Class.
-- It will remove all annoying admin notice from admin panel.
 - It will load classes based on current screen of WordPress
 
+#### 25/02/2023 ####
+- Admin Dashboard
+    - added datatable and datalist component
+    - added .env support for development and production
+    - added axios as default http client
+- Plugin
+    - Upgraded php 5.6 to 7.4
+    - added rest api for admin panel
+    - updated log system with WordPress default timezone
+    - added cors support for development.
+    - started license management system, need to improve.
+- Scripts
+    - added build script. It will make a zip file for production build. Also return source to development
 ## Requirements ##
 - **node.js** v18.12.1
 - **npm** v9.2.0
@@ -74,23 +86,8 @@ The same goes for website assets
 
 It will clone your production repository and push the most recent code.
 
-## Frequently Asked Questions ##
-- [Network error from admin settings page](#network-error-from-admin-settings-page)
-- [Shortcode render content on top of page](#shortcode-render-content-on-top-of-page)
-- [How to change branch for production](#how-to-change-branch-for-production)
-### Network error from admin settings page ###
-You can enable cors or install a cors plugin on your development site. I am using [my plugin](https://wordpress.org/plugins/enable-cors-support) to deal with cores issues. This error will only show the creation stage.
-
-### Shortcode render content on top of page ###
-The theme causes this issue. Simply switch your theme to storefront or any other modern theme. You will notice a difference.
-
-### How to change branch for production ###
-Replace your branch name at `deploy.sh:32`
 
 ## Screenshots ##
 
 ### 1. Admin UI ###
-![](admin.gif)
-### 2. CORS issue ###
-![](cors.gif)
 

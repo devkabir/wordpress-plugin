@@ -11,8 +11,8 @@
  * Plugin URI:        https://example.com/your-plugin-name
  * Description:       Description of the plugin.
  * Version:           1.0.0
- * Requires at least: 4.1
- * Requires PHP:      5.6
+ * Requires at least: 5.3
+ * Requires PHP:      7.4
  * Author:            Your Name
  * Author URI:        https://example.com
  * Text Domain:       your-plugin-name
@@ -31,6 +31,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 /* Loading the autoloader file from the vendor directory. */
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+
 use DevKabir\Plugin\Loader;
 use PluginPackage\Plugin;
 
@@ -53,7 +54,7 @@ $instance = Plugin::get_instance();
  * @param string $file The filename of the plugin including the path.
  * @param callable $callback The function hooked to the 'activate_PLUGIN' action.
  *
- * @since 2.0.0
+ * @since 1.0.0
  */
 register_activation_hook( __FILE__, array( $instance, 'activate' ) );
 
@@ -73,7 +74,7 @@ register_activation_hook( __FILE__, array( $instance, 'activate' ) );
  * @param string $file The filename of the plugin including the path.
  * @param callable $callback The function hooked to the 'deactivate_PLUGIN' action.
  *
- * @since 2.0.0
+ * @since 1.0.0
  */
 register_deactivation_hook( __FILE__, array( $instance, 'deactivate' ) );
 
@@ -86,13 +87,6 @@ register_deactivation_hook( __FILE__, array( $instance, 'deactivate' ) );
  * @since 1.0.0
  */
 $instance->init();
-if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-	$instance->ajax();
-} elseif ( is_admin() ) {
-	$instance->admin();
-} else {
-	$instance->web();
-}
 
 /**
  * Register all added actions from above classes.

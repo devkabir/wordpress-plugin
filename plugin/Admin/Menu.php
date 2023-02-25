@@ -10,7 +10,6 @@ namespace PluginPackage\Admin;
 use DevKabir\Plugin\Container;
 use DevKabir\Plugin\Loader;
 use const PluginPackage\NAME;
-use const PluginPackage\ROOT;
 use const PluginPackage\URL;
 use const PluginPackage\VERSION;
 
@@ -53,7 +52,7 @@ class Menu extends Container {
 	/**
 	 * It adds a menu page to the admin panel.
 	 */
-	public function register() {
+	public function register(): void {
 		add_menu_page(
 			__( 'Your Plugin Name', NAME ),
 			__( 'PluginPackage', NAME ),
@@ -68,7 +67,7 @@ class Menu extends Container {
 	 * We're enqueuing our CSS and JS files, and then we're adding a filter to the script tag to make sure that the JS file is
 	 * loaded as a module
 	 */
-	public function scripts() {
+	public function scripts(): void {
 		wp_enqueue_style(
 			NAME,
 			URL . 'assets/admin/dist/index.css',
@@ -100,13 +99,22 @@ class Menu extends Container {
 			10,
 			3
 		);
+		wp_localize_script(
+			NAME,
+			'your_plugin_name',
+			array(
+				'nonce1' => wp_create_nonce( 'your_plugin_name_1' ),
+				'nonce2' => wp_create_nonce( 'wp_rest' ),
+				'nonce3' => wp_create_nonce( 'your_plugin_name_3' ),
+			)
+		);
 
 	}
 
 	/**
 	 * It renders the plugin.
 	 */
-	public function render() {
+	public function render(): void {
 		echo '<div id="' . NAME . '"></div>';
 	}
 
