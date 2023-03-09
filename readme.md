@@ -90,4 +90,4 @@ It will clone your production repository and push the most recent code.
 ## Screenshots ##
 
 ### 1. Admin UI ###
-
+![](./admin.gif)
