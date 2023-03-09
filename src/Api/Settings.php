@@ -1,30 +1,18 @@
 <?php
-/**
- * Manage settings
- *
- * @package PluginPackage\Api
- * @subpackage Component
- * @since 1.0.0
- */
 
 namespace PluginPackage\Api;
 
-/* This is a security measure to prevent direct access to the plugin file. */
-
+use PluginPackage\Helpers\Log;
+use PluginPackage\Traits\Api;
+use PluginPackage\Traits\Singleton;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
-if ( ! defined( 'WPINC' ) ) {
-	exit;
-}
+final class Settings {
+	use Api, Singleton;
 
-/**
- * Class Settings
- * @package PluginPackage\Api
- */
-final class Settings extends ApiBase {
 	/**
 	 * Register the routes for serving data from custom table
 	 */
@@ -58,7 +46,7 @@ final class Settings extends ApiBase {
 	/**
 	 * Get data from custom table
 	 *
-	 * @param  WP_REST_Request $request  Full data about the request.
+	 * @param WP_REST_Request $request Full data about the request.
 	 *
 	 * @return WP_Error|WP_REST_Response
 	 */
@@ -67,11 +55,17 @@ final class Settings extends ApiBase {
 		$options    = get_option( $option_key, array() );
 		if ( $request->get_method() === WP_REST_Server::CREATABLE ) {
 			$update          = array();
-			$update['field_1'] = $request->get_param( 'field_1' ) === 'true';
+			$update['track'] = $request->get_param( 'track' ) === 'true';
 			$options         = array_merge( $options, $update );
 			update_option( $option_key, $options );
+			Log::instance()->write( 'settings', 'Settings updated by ' . get_current_user_id() );
 		}
 
-		return rest_ensure_response( $options );
+		return rest_ensure_response(
+			array(
+				'data'    => $options,
+				'message' => __( 'Settings Updated', 'your-plugin-name' ),
+			)
+		);
 	}
 }

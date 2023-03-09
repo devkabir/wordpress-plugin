@@ -1,17 +1,37 @@
 import './../style.scss'
 import $ from 'jquery'
+import {Notyf} from "notyf";
 
-$('#quote-form').on('submit', function (e) {
-    e.preventDefault();
-    $.ajax({
-        method: 'POST',
-        url: 'https://your-domain-name.dev/wp-admin/admin-ajax.php',
-        accepts: 'application/json',
-        data: {
-            nonce: window.your_plugin_name.nonce,
-            action: 'save_quote',
-            quote: $(this).serialize()
-        }
-    }).done(response => alert('OK'))
-        .fail(error => alert(error))
-})
+let notyf = new Notyf()
+$(document).ready(
+    function () {
+        $('#quote-form').on(
+            'submit',
+            function (e) {
+                e.preventDefault();
+                $.ajax(
+                    {
+                        method: 'POST',
+                        url: window.location.origin + '/wp-admin/admin-ajax.php',
+                        accepts: 'application/json',
+                        data: {
+                            nonce: your_plugin_name.nonce, action: 'save_message', message: $(this).serializeArray()
+                        }
+                    }
+                )
+                    .done(
+                        response => {
+                            if (response.success) {
+                                notyf.success(response.data);
+                                $(this).trigger('reset');
+                            } else {
+                                notyf.error(response.data);
+                            }
+
+                        }
+                    )
+                    .fail(error => notyf.error(error.message))
+            }
+        )
+    }
+)

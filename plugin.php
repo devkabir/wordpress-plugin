@@ -21,74 +21,48 @@
  * Update URI:        https://example.com/your-plugin-name/
  */
 
-/* This is a security measure to prevent direct access to the plugin file. */
+/*
+|--------------------------------------------------------------------------
+| If this file is called directly, abort.
+|--------------------------------------------------------------------------
+*/
+
+use PluginPackage\Plugin;
+
 if ( ! defined( 'WPINC' ) ) {
 	exit;
 }
 
-
-
-
-/* Loading the autoloader file from the vendor directory. */
+/*
+|--------------------------------------------------------------------------
+| Load class autoloader
+|--------------------------------------------------------------------------
+*/
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-use DevKabir\Plugin\Loader;
-use PluginPackage\Plugin;
+/*
+|--------------------------------------------------------------------------
+| Define default constants
+|--------------------------------------------------------------------------
+*/
+define( 'PluginPackage\MODE', 'dev' );
+define( 'PluginPackage\NAME', 'your-plugin-name' );
+define( 'PluginPackage\VERSION', '1.0.0' );
+define( 'PluginPackage\DIR', plugin_dir_path( __FILE__ ) );
+define( 'PluginPackage\URL', plugin_dir_url( __FILE__ ) );
 
-/* Creating a new instances for initialize this plugin */
-$instance = Plugin::get_instance();
+/*
+|--------------------------------------------------------------------------
+| Activation, deactivation and uninstall event.
+|--------------------------------------------------------------------------
+*/
+register_activation_hook( __FILE__, array( Plugin::class, 'activate' ) );
+register_deactivation_hook( __FILE__, array( Plugin::class, 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( Plugin::class, 'uninstall' ) );
 
-/**
- * Set the activation hook for a plugin.
- *
- * When a plugin is activated, the action 'activate_PLUGINNAME' hook is
- * called. In the name of this hook, PLUGINNAME is replaced with the name
- * of the plugin, including the optional subdirectory. For example, when the
- * plugin is located in wp-content/plugins/sampleplugin/sample.php, then
- * the name of this hook will become 'activate_sampleplugin/sample.php'.
- *
- * When the plugin consists of only one file and is (as by default) located at
- * wp-content/plugins/sample.php the name of this hook will be
- * 'activate_sample.php'.
- *
- * @param string $file The filename of the plugin including the path.
- * @param callable $callback The function hooked to the 'activate_PLUGIN' action.
- *
- * @since 1.0.0
- */
-register_activation_hook( __FILE__, array( $instance, 'activate' ) );
-
-/**
- * Sets the deactivation hook for a plugin.
- *
- * When a plugin is deactivated, the action 'deactivate_PLUGINNAME' hook is
- * called. In the name of this hook, PLUGINNAME is replaced with the name
- * of the plugin, including the optional subdirectory. For example, when the
- * plugin is located in wp-content/plugins/sampleplugin/sample.php, then
- * the name of this hook will become 'deactivate_sampleplugin/sample.php'.
- *
- * When the plugin consists of only one file and is (as by default) located at
- * wp-content/plugins/sample.php the name of this hook will be
- * 'deactivate_sample.php'.
- *
- * @param string $file The filename of the plugin including the path.
- * @param callable $callback The function hooked to the 'deactivate_PLUGIN' action.
- *
- * @since 1.0.0
- */
-register_deactivation_hook( __FILE__, array( $instance, 'deactivate' ) );
-
-/**
- * This is a conditional statement that checks if the current page is in the admin area.
- * If it is not, it will load the website related function.
- * If it is, and doing ajax, it will load the ajax related functions.
- * Otherwise, it will load the admin functions.
- *
- * @since 1.0.0
- */
-$instance->init();
-
-/**
- * Register all added actions from above classes.
- */
-Loader::get_instance()->run();
+/*
+|--------------------------------------------------------------------------
+| Start the plugin
+|--------------------------------------------------------------------------
+*/
+Plugin::init();

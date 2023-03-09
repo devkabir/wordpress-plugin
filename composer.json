@@ -1,37 +1,38 @@
 {
-    "name": "devkabir/wordpress-plugin",
-    "description": "A simple oop structure in the singleton pattern for a WordPress plugin.",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Dev Kabir",
-            "email": "dev.kabir01@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-        "devkabir/plugin": "^1.0"
-    },
-    "require-dev": {
-        "automattic/vipwpcs": "^2.3",
-        "roots/wordpress-no-content": "^6.1"
-    },
-    "scripts": {
-        "lint": "phpcs --extensions=php -s -p",
-        "format": "phpcbf -p",
-        "post-create-project-cmd": [
-            "@php ./post-install.php"
-        ]
-    },
-    "autoload": {
-        "psr-4": {
-            "PluginPackage\\": "plugin/"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+  "name": "devkabir/wordpress-plugin",
+  "description": "A simple oop structure in the singleton pattern for a WordPress plugin.",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Dev Kabir",
+      "email": "dev.kabir01@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "automattic/vipwpcs": "^2.3",
+    "roots/wordpress-no-content": "^6.1"
+  },
+  "scripts": {
+    "lint": "phpcs --extensions=php -s -p",
+    "format": "phpcbf -p",
+    "post-create-project-cmd": [
+      "@php ./post-install.php"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "PluginPackage\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "require": {
+    "ext-json": "*"
+  }
 }

@@ -1,5 +1,5 @@
 <script>
-import {inject, onMounted, reactive, ref} from "vue"
+import {inject, onBeforeMount, reactive, ref} from "vue"
 import {Notyf} from 'notyf';
 
 export default {
@@ -25,10 +25,8 @@ export default {
       axios.post('settings', serializedPost)
           .then(response => {
             const updated = response.data;
-            console.log(updated)
-            // console.log(updated.track);
-            // settings.track = updated.track
-            notyf.success('setting saved!')
+            settings.track = updated.data.track
+            notyf.success(updated.message)
           })
           .catch(error => {
             notyf.error(error.message)
@@ -41,7 +39,7 @@ export default {
 
       axios.get('settings')
           .then(response => {
-            const updated = response.data;
+            const updated = response.data.data;
             settings.track = updated.track
           })
           .catch(error => {
@@ -49,7 +47,7 @@ export default {
           })
           .finally(() => isLoading.value = false)
     }
-    onMounted(() => loadSettings())
+    onBeforeMount(() => loadSettings())
     // expose to template and other options API hooks
     return {
       isLoading, processSettings, settings
@@ -76,7 +74,8 @@ export default {
               <div class="grid  gap-6">
                 <div class="flex items-start">
                   <div class="flex h-5 items-center">
-                    <input id="track" v-model="settings.track" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" name="track"
+                    <input id="track" v-model="settings.track"
+                           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" name="track"
                            type="checkbox"/>
                   </div>
                   <div class="ml-3 text-sm">
@@ -91,7 +90,8 @@ export default {
                 <svg v-if="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                      fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  <path class="opacity-75"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         fill="currentColor"></path>
                 </svg>
                 <span v-else>Save</span>

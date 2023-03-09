@@ -1,43 +1,29 @@
 <?php
-/**
- * Collection of logs
- *
- * @package PluginPackage\Api
- * @subpackage Component
- * @since 1.0.0
- */
 
 namespace PluginPackage\Api;
 
-/* This is a security measure to prevent direct access to the plugin file. */
-
-use DevKabir\Plugin\Log;
+use PluginPackage\Helpers\Log;
+use PluginPackage\Traits\Api;
+use PluginPackage\Traits\Singleton;
 use WP_Error;
 use WP_HTTP_Response;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 
-if ( ! defined( 'WPINC' ) ) {
-	exit;
-}
-
 /**
  * Class Logs
+ *
  * @package PluginPackage\Api
  */
-final class Logs extends ApiBase {
-	/**
-	 * Instance of log class
-	 * @var Log
-	 */
-	private $log;
+final class Logs {
+	use Api, Singleton;
+
 
 	/**
 	 * Register the routes for serving data from custom table
 	 */
 	public function __construct() {
-		$this->log = Log::get_instance();
 		register_rest_route(
 			$this->namespace,
 			'/logs',
@@ -74,28 +60,9 @@ final class Logs extends ApiBase {
 	 */
 	public function remove_data( WP_REST_Request $request ) {
 		$type = $request->get_param( 'file' );
-		unlink( $this->log->file( $type ) );
+		unlink( Log::instance()->file( $type ) );
 
-		return rest_ensure_response( array( 'message' => 'Log cleared successfully.' ) );
-	}
-
-	/**
-	 * It reads the contents of the log file and returns an array of the lines
-	 *
-	 * @return array
-	 */
-	private function read_logs(): array {
-		$file_array = array();
-		if ( is_dir( $this->log->get_dir() ) ) {
-			$files = array_diff( scandir( $this->log->get_dir() ), array( '.', '..' ) );
-
-			foreach ( $files as $file ) {
-				$key                = preg_replace( '/\.log$/', '', $file );
-				$file_array[ $key ] = $this->log->read( $key );
-			}
-		}
-
-		return $file_array;
+		return rest_ensure_response( array( 'message' => __( 'Log cleared successfully.', 'your-plugin-name' ) ) );
 	}
 
 	/**
@@ -111,5 +78,25 @@ final class Logs extends ApiBase {
 				'items' => $contents,
 			)
 		);
+	}
+
+	/**
+	 * It reads the contents of the log file and returns an array of the lines
+	 *
+	 * @return array
+	 */
+	private function read_logs(): array {
+		$logger     = Log::instance();
+		$file_array = array();
+		if ( is_dir( $logger->get_dir() ) ) {
+			$files = array_diff( scandir( $logger->get_dir() ), array( '.', '..' ) );
+
+			foreach ( $files as $file ) {
+				$key                = preg_replace( '/\.log$/', '', $file );
+				$file_array[ $key ] = $logger->read( $key );
+			}
+		}
+
+		return $file_array;
 	}
 }

@@ -1,79 +1,53 @@
 <template>
-  <div class="bg-white shadow">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 items-center justify-between">
-        <div class="flex items-center">
-          <div class="flex-shrink-0">
-            <WP/>
-          </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <router-link active-class="active" class="menu-link" to="/">Settings</router-link>
-              <router-link active-class="active" class="menu-link" to="/logs">Logs</router-link>
-            </div>
-          </div>
-        </div>
-        <div class="-mr-2 flex md:hidden">
-          <button
-              class="notification-button"
-              type="button">
-            <span class="sr-only">View notifications</span>
-            <outfill-bell/>
-          </button>
-          <!-- Mobile menu button -->
-          <button aria-controls="mobile-menu"
-                  aria-expanded="false"
-                  class="mobile-menu-toggle"
-                  type="button"
-                  @click="showMobileMenu"
-          >
-            <span class="sr-only">Open main menu</span>
-            <OutfillBars v-if="!showMenu"/>
-            <OutlineX v-else/>
-          </button>
-        </div>
-      </div>
+
+  <!-- Sidebar component, swap this element with another sidebar if you like -->
+  <div class="flex flex-grow flex-col overflow-y-auto bg-indigo-700 pt-5">
+    <div class="flex flex-shrink-0 items-center px-4">
+      <WP/>
     </div>
-    <div id="mobile-menu" class="md:hidden" :class="showMenu ? 'block' : 'hidden'" >
-      <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-        <router-link active-class="active" class="menu-link" to="/">Settings</router-link>
-        <router-link active-class="active" class="menu-link" to="/logs">Logs</router-link>
-      </div>
+    <div class="mt-5 flex flex-1 flex-col">
+      <nav class="flex-1 space-y-1 px-2 pb-4">
+
+        <router-link active-class="active" class="link" to="/">
+          <AdjustmentsVerticalIcon class="icon"/>
+          Settings
+        </router-link>
+        <router-link active-class="active" class="link" to="/logs">
+          <ClipboardDocumentListIcon class="icon"/>
+          Logs
+        </router-link>
+      </nav>
     </div>
   </div>
 </template>
-<script>
-import {ref}       from "vue";
-import OutfillBell from "./icons/OutfillBell.vue";
-import OutfillBars from "./icons/OutfillBars.vue";
-import OutlineX    from "./icons/OutlineX.vue";
-import WP          from './icons/WP.vue';
-export default {
-  name: 'Navigation',
-  components: {OutlineX, OutfillBars, OutfillBell, WP},
-  setup() {
-    let showMenu = ref(false)
-    const showMobileMenu = () => showMenu.value = !showMenu.value
-    return {
-      showMenu, showMobileMenu
-    }
-  }
+
+<script setup>
+import {ref, watchEffect} from "vue";
+import WP from "@/components/WP.vue";
+import {AdjustmentsVerticalIcon, ClipboardDocumentListIcon} from "@heroicons/vue/24/outline";
+
+let props = defineProps(['show']);
+let showMobileMenu = ref(false);
+const toggleMobileMenu = () => {
+  showMobileMenu.value = false;
 }
+watchEffect(() => {
+  showMobileMenu.value = props.show ? true : true
+})
 </script>
-<style scoped lang="scss">
-  .menu-link {
-    @apply text-gray-600 hover:bg-gray-700 hover:text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
-  }
+<style scoped>
+.icon {
+  @apply mr-3 h-6 w-6 flex-shrink-0 text-indigo-300
+}
 
-  .active {
-    @apply bg-gray-900 text-white;
-  }
+.active {
+  @apply bg-indigo-800 text-white;
+}
 
-  .mobile-menu-toggle {
-    @apply inline-flex items-center justify-center rounded-md  p-2  hover:bg-gray-700 hover:text-white;
-  }
-
-  .mobile-menu-link {
-    @apply text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium;
-  }
+.link {
+  @apply text-indigo-100 hover:bg-indigo-600  flex items-center px-2 py-2 text-sm font-medium rounded-md;
+}
 </style>
+
+
+
