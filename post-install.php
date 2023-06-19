@@ -44,10 +44,8 @@ function seek_and_destroy($dir) : void
 
 seek_and_destroy(__DIR__ . '/src/');
 seek_and_destroy($base . '.php');
-seek_and_destroy(__DIR__ . '/assets/admin/src/index.html');
-seek_and_destroy(__DIR__ . '/assets/admin/src/main.js');
-seek_and_destroy(__DIR__ . '/assets/admin/src/pages/Settings.vue');
-seek_and_destroy(__DIR__ . '/assets/admin/postcss.config.cjs');
+seek_and_destroy(__DIR__ . '/assets/admin/');
+seek_and_destroy(__DIR__ . '/assets/web/');
 exec('composer install');
 chdir(__DIR__ . '/assets/admin');
 exec('npm install && npm run build');
