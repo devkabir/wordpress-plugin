@@ -44,8 +44,7 @@ function seek_and_destroy($dir) : void
 
 seek_and_destroy(__DIR__ . '/src/');
 seek_and_destroy($base . '.php');
-seek_and_destroy(__DIR__ . '/assets/admin/');
-seek_and_destroy(__DIR__ . '/assets/web/');
+seek_and_destroy(__DIR__ . '/assets/');
 exec('composer install');
 chdir(__DIR__ . '/assets/admin');
 exec('npm install && npm run build');

@@ -4,7 +4,7 @@ module.exports = {
     tailwindcss: {},
     autoprefixer: {},
     'postcss-prefix-selector': {
-      prefix: '#devkabir-plugin'
+      prefix: '#your-plugin-name'
     },
   },
 }
