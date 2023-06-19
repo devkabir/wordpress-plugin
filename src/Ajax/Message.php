@@ -1,10 +1,10 @@
 <?php
 
-namespace Wordpress\Plugin\Ajax;
+namespace PluginPackage\Ajax;
 
-use Wordpress\Plugin\Helpers\Log;
-use Wordpress\Plugin\Traits\Singleton;
-use const Wordpress\Plugin\NAME;
+use PluginPackage\Helpers\Log;
+use PluginPackage\Traits\Singleton;
+use const PluginPackage\NAME;
 
 class Message
 {
