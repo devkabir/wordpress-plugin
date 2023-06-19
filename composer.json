@@ -20,11 +20,14 @@
     "format": "phpcbf -p",
     "post-create-project-cmd": [
       "@php ./post-install.php"
+    ],
+    "post-update-cmd": [
+      "@php ./post-install.php"
     ]
   },
   "autoload": {
     "psr-4": {
-      "PluginPackage\\": "src/"
+      "Wordpress\\Plugin\\": "src/"
     }
   },
   "config": {
