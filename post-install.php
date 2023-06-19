@@ -54,4 +54,4 @@ exec('npm install && npm run build');
 chdir(__DIR__ . '/assets/website');
 exec('npm install && npm run build');
 unlink(__DIR__ . '/admin.gif');
-// unlink(__DIR__ . '/post-install.php');
+unlink(__DIR__ . '/post-install.php');
