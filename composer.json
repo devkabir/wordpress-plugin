@@ -20,9 +20,6 @@
     "format": "phpcbf -p",
     "post-create-project-cmd": [
       "@php ./post-install.php"
-    ],
-    "post-update-cmd": [
-      "@php ./post-install.php"
     ]
   },
   "autoload": {
