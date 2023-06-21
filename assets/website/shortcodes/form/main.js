@@ -1,8 +1,8 @@
-import './../style.scss'
-import $ from 'jquery'
-import {Notyf} from "notyf";
+import './../style.scss';
+import $ from 'jquery';
+import {Notyf} from 'notyf';
 
-let notyf = new Notyf()
+let notify = new Notyf();
 $(document).ready(
     function () {
         $('#quote-form').on(
@@ -22,16 +22,16 @@ $(document).ready(
                     .done(
                         response => {
                             if (response.success) {
-                                notyf.success(response.data);
+                                notify.success(response.data);
                                 $(this).trigger('reset');
                             } else {
-                                notyf.error(response.data);
+                                notify.error(response.data);
                             }
 
                         }
                     )
-                    .fail(error => notyf.error(error.message))
+                    .fail(error => notify.error(error.message));
             }
-        )
+        );
     }
-)
+);

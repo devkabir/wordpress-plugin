@@ -103,3 +103,8 @@ export default {
     </div>
   </div>
 </template>
+<style>
+input[type=checkbox]:checked::before{
+  content: unset !important;
+}
+</style>

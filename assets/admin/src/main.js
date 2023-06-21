@@ -1,15 +1,15 @@
-import {createApp} from 'vue'
-import './style.scss'
-import App from './App.vue'
-import routes from "./routes";
-import {createMemoryHistory, createRouter} from "vue-router";
-import axios from "axios";
+import { createApp } from 'vue';
+import './style.scss';
+import App from './App.vue';
+import routes from './routes';
+import { createMemoryHistory, createRouter } from 'vue-router';
+import axios from 'axios';
 
 const config = {
     baseURL: window.location.origin + '/wp-json/your-plugin-name/v1/',
 };
 if (import.meta.env.PROD) {
-    config.headers = {'X-WP-Nonce': window.your_plugin_name.nonce}
+    config.headers = { 'X-WP-Nonce': window.your_plugin_name.nonce };
 }
 const axiosInstance = axios.create(config);
 createApp(App)
@@ -22,4 +22,4 @@ createApp(App)
             }
         )
     )
-    .mount('#your-plugin-name')
+    .mount('#your-plugin-name');

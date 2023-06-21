@@ -20,6 +20,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
+    "jshint": "^2.13.6",
     "postcss": "^8.4.19",
     "postcss-prefix-selector": "^1.16.0",
     "sass": "^1.56.2",
