@@ -1,61 +1,46 @@
-<script>
-import {inject, onBeforeMount, reactive, ref} from "vue"
+<script setup>
+import {inject, onBeforeMount, reactive, ref} from 'vue';
 import {Notyf} from 'notyf';
+import Loading from '@/components/data/Loading.vue';
 
-export default {
-  setup() {
-    const notyf = new Notyf();
-    const settings = reactive({
-      track: false,
-    })
+const notyf = new Notyf();
+const settings = reactive({
+  track: false,
+});
 
-    const isLoading = ref(false)
-    const axios = inject('axios')
-    const processSettings = async (data) => {
-      if (isLoading.value) return;
-      isLoading.value = true
-      let serializedPost = new FormData()
-      for (let item in settings) {
-        if (settings.hasOwnProperty(item)) {
-          serializedPost.append(item, settings[item])
-        }
-      }
-
-
-      axios.post('settings', serializedPost)
-          .then(response => {
-            const updated = response.data;
-            settings.track = updated.data.track
-            notyf.success(updated.message)
-          })
-          .catch(error => {
-            notyf.error(error.message)
-          })
-          .finally(() => isLoading.value = false)
+const isLoading = ref(false);
+const axios = inject('axios');
+const processSettings = async (data) => {
+  if (isLoading.value) return;
+  isLoading.value = true;
+  let serializedPost = new FormData();
+  for (let item in settings) {
+    if (settings.hasOwnProperty(item)) {
+      serializedPost.append(item, settings[item]);
     }
-    const loadSettings = async (data) => {
-      if (isLoading.value) return;
-      isLoading.value = true
+  }
 
-      axios.get('settings')
-          .then(response => {
-            const updated = response.data.data;
-            settings.track = updated.track
-          })
-          .catch(error => {
-            notyf.error(error.message)
-          })
-          .finally(() => isLoading.value = false)
-    }
-    onBeforeMount(() => loadSettings())
-    // expose to template and other options API hooks
-    return {
-      isLoading, processSettings, settings
-    }
-  },
+  axios.post('settings', serializedPost).then(response => {
+    const updated = response.data;
+    settings.track = updated.data.track;
+    notyf.success(updated.message);
+  }).catch(error => {
+    notyf.error(error.message);
+  }).finally(() => isLoading.value = false);
+};
+const loadSettings = async (data) => {
+  if (isLoading.value) return;
+  isLoading.value = true;
 
-
-}
+  axios.get('settings').then(response => {
+    const updated = response.data.data;
+    settings.track = updated.track;
+  }).catch(error => {
+    notyf.error(error.message);
+  }).finally(() => isLoading.value = false);
+};
+onBeforeMount(() => loadSettings());
+// expose to template and other options API hooks
 
 </script>
 <template>
@@ -87,13 +72,7 @@ export default {
             </div>
             <div class="bg-gray-100 px-4 py-3 text-right sm:px-6">
               <button class="submit" type="submit">
-                <svg v-if="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                     fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        fill="currentColor"></path>
-                </svg>
+                <Loading v-if="isLoading"/>
                 <span v-else>Save</span>
               </button>
             </div>
@@ -104,7 +83,7 @@ export default {
   </div>
 </template>
 <style>
-input[type=checkbox]:checked::before{
+input[type=checkbox]:checked::before {
   content: unset !important;
 }
 </style>

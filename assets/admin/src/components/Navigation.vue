@@ -2,22 +2,16 @@
   <div class="flex min-h-0 flex-1 flex-col bg-indigo-700 justify-between">
     <div class="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
       <div class="flex flex-shrink-0 items-center px-4">
-        <WP />
+        <WP class="icon fill-white"/>
         <span class="ml-4 font-bold text-white text-2xl">
           WordPress
         </span>
       </div>
-      <nav class="mt-5 flex-1 space-y-1 px-2">
-        <nav class="flex-1 space-y-1 px-2 pb-4">
-          <router-link  class="link" active-class="active" to="/">
-            <AdjustmentsVerticalIcon class="icon" />
-            Settings
+      <nav class="mt-5 flex-1 px-2">
+          <router-link v-for="menu in routes" :key="menu.name" class="link" active-class="active" :to="menu.path">
+            <Component :is="menu.icon" class="icon" />
+            {{menu.name}}
           </router-link>
-          <router-link  class="link" active-class="active" to="/logs">
-            <ClipboardDocumentListIcon class="icon" />
-            Logs
-          </router-link>
-        </nav>
       </nav>
     </div>
     <div class="flex flex-shrink-0 border-t border-indigo-800 p-4">
@@ -40,18 +34,18 @@
 
 <script setup>
   import WP from "@/components/WP.vue";
-  import { AdjustmentsVerticalIcon, ClipboardDocumentListIcon } from "@heroicons/vue/24/outline";
+  import routes from '@/routes.js';
 </script>
 <style scoped>
   .icon {
-    @apply mr-3 h-6 w-6 flex-shrink-0 text-indigo-300 hover:text-white
+    @apply mr-3 h-6 w-6
   }
 
   .active {
-    @apply bg-indigo-800 text-white font-bold;
+    @apply bg-indigo-800 text-white;
   }
 
   .link {
-    @apply text-indigo-100 flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-indigo-600 hover:text-white hover:font-bold;
+    @apply text-indigo-100 flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-indigo-600 hover:text-white;
   }
 </style>

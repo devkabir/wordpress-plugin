@@ -1,59 +1,54 @@
 <script setup>
-import { inject, onBeforeMount, ref } from 'vue'
-import { Notyf } from 'notyf'
-import Loading from '@/components/data/Loading.vue'
+import {inject, onBeforeMount, ref, watch} from 'vue';
+import {Notyf} from 'notyf';
+import Loading from '@/components/data/Loading.vue';
 
-const props = defineProps(['model', 'endpoint'])
+const props = defineProps(['model', 'endpoint']);
 // Default
-const notify = new Notyf()
-let isLoading = ref(false)
-const { model, endpoint } = props
+const notify = new Notyf();
+let isLoading = ref(false);
+const {model, endpoint} = props;
 // Essential data
-const records = ref([])
-const tabs = ref([])
-const selectedTab = ref()
-const content = ref()
+const records = ref([]);
+const tabs = ref([]);
+const selectedTab = ref();
+const content = ref();
 // Injecting the axios instance from the root component.
-const axios = inject('axios')
+const axios = inject('axios');
 // Making an API call to the endpoint and then setting the data to the records.value.
 const fetchData = async () => {
   // Checking if the data is loading and if it is, it will return and not load the data again.
-  if (isLoading.value) return
-  isLoading.value = true
+  if (isLoading.value) return;
+  isLoading.value = true;
   // Making an API call to the endpoint and then setting the data to the records.value.
-  await axios.get(endpoint)
-      .then(response => {
-        records.value = response.data.items
-        if (typeof records.value === 'object') {
-          tabs.value = Object.keys(records.value)
-          selectedTab.value = tabs.value[0]
-          content.value = records.value[tabs.value[0]]
-        }
-      })
-      .catch(error => notify.error(error.message))
-      .finally(() => isLoading.value = false)
-}
+  await axios.get(endpoint).then(response => {
+    records.value = response.data.items;
+    if (typeof records.value === 'object') {
+      tabs.value = Object.keys(records.value);
+      selectedTab.value = tabs.value[0];
+    }
+  }).catch(error => notify.error(error.message)).finally(() => isLoading.value = false);
+};
 const clearAll = async () => {
   // Checking if the data is loading and if it is, it will return and not load the data again.
-  if (isLoading.value) return
-  isLoading.value = true
+  if (isLoading.value) return;
+  isLoading.value = true;
   await axios.get(endpoint + '/clear-all', {
     params: {
-      file: selectedTab.value
-    }
-  })
-      .catch(error => notify.error(error.message))
-      .then(response => notify.success(response.data.message))
-      .finally(() => {
-        isLoading.value = false
-        fetchData()
-      })
-}
+      file: selectedTab.value,
+    },
+  }).catch(error => notify.error(error.message)).then(response => notify.success(response.data.message)).finally(() => {
+    isLoading.value = false;
+    fetchData();
+  });
+};
+
 const selectTab = async (tab) => {
-  console.log(tab)
-  selectedTab.value = tab
-  content.value = records.value[tab]
-}
+  selectedTab.value = tab;
+};
+watch(selectedTab, (a,b)=>{
+  content.value = records.value[a]
+})
 onBeforeMount(fetchData);
 
 </script>
@@ -82,9 +77,13 @@ onBeforeMount(fetchData);
         <label for="tabs" class="sr-only">Select a tab</label>
         <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
         <select id="tabs" name="tabs"
+                v-model="selectedTab"
+                @change="handleChange"
                 class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
           <option class="capitalize" :selected="selectedTab === tab" v-for="(tab, index) in tabs" v-text="tab"
-                  @click="selectTab(tab)"></option>
+          >
+
+          </option>
         </select>
       </div>
       <div class="hidden sm:block">
