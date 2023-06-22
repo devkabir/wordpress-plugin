@@ -2,12 +2,12 @@
 
 namespace PluginPackage\Web;
 
-use PluginPackage\Traits\FileSystem;
 use PluginPackage\Traits\Singleton;
+use PluginPackage\Traits\FileSystem;
 use const PluginPackage\DIR;
-use const PluginPackage\MODE;
-use const PluginPackage\NAME;
 use const PluginPackage\URL;
+use const PluginPackage\NAME;
+use const PluginPackage\MODE;
 use const PluginPackage\VERSION;
 
 class Shortcodes {
@@ -61,17 +61,17 @@ class Shortcodes {
 			'wp_footer',
 			function () {
 				?>
-			<script>
-				const your_plugin_name = 
-				<?php
-				echo wp_json_encode(
-					array(
-						'ajax_url' => admin_url( 'admin-ajax.php' ),
-						'nonce'    => wp_create_nonce( NAME ),
-					)
-				)
-				?>
-			</script>
+                <script>
+                  const your_plugin_name =
+				  <?php
+				  echo wp_json_encode(
+					  array(
+						  'ajax_url' => admin_url( 'admin-ajax.php' ),
+						  'nonce'    => wp_create_nonce( NAME ),
+					  )
+				  )
+				  ?>
+                </script>
 				<?php
 			}
 		);

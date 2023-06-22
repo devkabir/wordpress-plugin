@@ -60,8 +60,8 @@ final class Logs {
 	 */
 	public function remove_data( WP_REST_Request $request ) {
 		$type = $request->get_param( 'file' );
-		if (null === $type) {
-			$message = __('No logs yet!', 'your-plugin-name');
+		if ( null === $type ) {
+			$message = __( 'No logs yet!', 'your-plugin-name' );
 		} else {
 			$file = Log::instance()->file( $type );
 			if ( file_exists( $file ) ) {

@@ -2,13 +2,13 @@
 
 namespace PluginPackage\Api;
 
-use PluginPackage\Helpers\Log;
-use PluginPackage\Traits\Api;
-use PluginPackage\Traits\Singleton;
 use WP_Error;
+use WP_REST_Server;
 use WP_REST_Request;
 use WP_REST_Response;
-use WP_REST_Server;
+use PluginPackage\Traits\Api;
+use PluginPackage\Helpers\Log;
+use PluginPackage\Traits\Singleton;
 
 final class Settings {
 	use Api, Singleton;

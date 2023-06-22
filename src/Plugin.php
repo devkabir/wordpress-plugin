@@ -2,9 +2,9 @@
 
 namespace PluginPackage;
 
+use PluginPackage\Api\Logs;
 use PluginPackage\Admin\Menu;
 use PluginPackage\Ajax\Message;
-use PluginPackage\Api\Logs;
 use PluginPackage\Api\Settings;
 use PluginPackage\Web\Shortcodes;
 

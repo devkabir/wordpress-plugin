@@ -3,6 +3,10 @@
 namespace PluginPackage\Traits;
 
 trait FileSystem {
+	/**
+	 * It will hold wp file system instance.
+	 * @var null
+	 */
 	private $filesystem = null;
 
 	/**

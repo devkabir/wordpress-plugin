@@ -2,8 +2,8 @@
 
 namespace PluginPackage\Helpers;
 
-use PluginPackage\Traits\FileSystem;
 use PluginPackage\Traits\Singleton;
+use PluginPackage\Traits\FileSystem;
 use const PluginPackage\NAME;
 
 final class Log {
@@ -85,19 +85,6 @@ final class Log {
 		}
 
 		return $log;
-	}
-
-	/**
-	 * It's checking if the file exists.
-	 *
-	 * @param string $type file type.
-	 *
-	 * @return bool
-	 */
-	private function has( string $type ): bool {
-		$file = $this->file( $type );
-
-		return file_exists( $file );
 	}
 
 

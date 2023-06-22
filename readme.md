@@ -35,7 +35,7 @@ worrying about the underlying code structure.
 - By using a bash script, you can create a WordPress.org build package. As a result, your source code and production code will be distinct.
 - Jquery is supported by frontend scripts. If your developer is unfamiliar with vue.js, he can generate admin and website assets with jquery.
 - Shortcode generator can collect assets dynamically. All you have to do is pass shortcode tag in Shortcode Class.
-- It will load classes based on current screen of WordPress
+- It will load classes based on the current screen of WordPress
 
 #### 25/02/2023 ####
 - Admin Dashboard
@@ -49,7 +49,22 @@ worrying about the underlying code structure.
     - added cors support for development.
     - started license management system, need to improve.
 - Scripts
-    - added build script. It will make a zip file for production build. Also return source to development
+    - added a build script. It will make a zip file for production build. Also return code from source to development
+
+#### 23/06/2023 ####
+- Admin Dashboard
+  - update ui with responsive sidebar.
+  - removed unnecessary packages.
+  - implemented an automate WordPress coding standards checker.
+  - added assets load based on project mode. 
+- Plugin
+  - restructured facades.
+  - added traits to reuse codes.
+  - updated logging system with the default WordPress file system.
+- Web
+  - added notification for form submit.
+
+
 ## Requirements ##
 - **node.js** v18.12.1
 - **npm** v9.2.0
