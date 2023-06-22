@@ -2,14 +2,14 @@
 
 namespace PluginPackage\Api;
 
-use PluginPackage\Helpers\Log;
-use PluginPackage\Traits\Api;
-use PluginPackage\Traits\Singleton;
 use WP_Error;
-use WP_HTTP_Response;
+use WP_REST_Server;
 use WP_REST_Request;
 use WP_REST_Response;
-use WP_REST_Server;
+use WP_HTTP_Response;
+use PluginPackage\Traits\Api;
+use PluginPackage\Helpers\Log;
+use PluginPackage\Traits\Singleton;
 
 /**
  * Class Logs
@@ -60,9 +60,21 @@ final class Logs {
 	 */
 	public function remove_data( WP_REST_Request $request ) {
 		$type = $request->get_param( 'file' );
-		unlink( Log::instance()->file( $type ) );
+		if (null === $type) {
+			$message = __('No logs yet!', 'your-plugin-name');
+		} else {
+			$file = Log::instance()->file( $type );
+			if ( file_exists( $file ) ) {
+				unlink( $file );
+				$message = __( 'Log cleared successfully.', 'your-plugin-name' );
+			} else {
+				$message = __( 'File not found!', 'your-plugin-name' );
+			}
+		}
 
-		return rest_ensure_response( array( 'message' => __( 'Log cleared successfully.', 'your-plugin-name' ) ) );
+
+		return rest_ensure_response( array( 'message' => $message ) );
+
 	}
 
 	/**

@@ -1,67 +1,61 @@
-<script>
+<script setup>
 import { inject, onBeforeMount, ref } from 'vue'
 import { Notyf } from 'notyf'
+import Loading from '@/components/data/Loading.vue'
 
-export default {
-  name: 'DataLists',
-  props: ['model', 'endpoint'],
-  setup(props) {
-    // Default
-    const notyf = new Notyf()
-    let isLoading = ref(false)
-    const { model, endpoint } = props
-    // Essential data
-    const records = ref([])
-    const tabs = ref([])
-    const selectedTab = ref()
-    const content = ref()
-    // Injecting the axios instance from the root component.
-    const axios = inject('axios')
-    // Making an API call to the endpoint and then setting the data to the records.value.
-    const fetchData = async () => {
-      // Checking if the data is loading and if it is, it will return and not load the data again.
-      if (isLoading.value) return
-      isLoading.value = true
-      // Making an API call to the endpoint and then setting the data to the records.value.
-      await axios.get(endpoint)
-          .then(response => {
-            records.value = response.data.items
-            if (typeof records.value === 'object') {
-              tabs.value = Object.keys(records.value)
-              selectedTab.value = tabs.value[0]
-              content.value = records.value[tabs.value[0]]
-            }
-          })
-          .catch(error => notyf.error(error.message))
-          .finally(() => isLoading.value = false)
-    }
-    const clearAll = async () => {
-      // Checking if the data is loading and if it is, it will return and not load the data again.
-      if (isLoading.value) return
-      isLoading.value = true
-      await axios.get(endpoint + '/clear-all', {
-        params: {
-          file: selectedTab.value
+const props = defineProps(['model', 'endpoint'])
+// Default
+const notify = new Notyf()
+let isLoading = ref(false)
+const { model, endpoint } = props
+// Essential data
+const records = ref([])
+const tabs = ref([])
+const selectedTab = ref()
+const content = ref()
+// Injecting the axios instance from the root component.
+const axios = inject('axios')
+// Making an API call to the endpoint and then setting the data to the records.value.
+const fetchData = async () => {
+  // Checking if the data is loading and if it is, it will return and not load the data again.
+  if (isLoading.value) return
+  isLoading.value = true
+  // Making an API call to the endpoint and then setting the data to the records.value.
+  await axios.get(endpoint)
+      .then(response => {
+        records.value = response.data.items
+        if (typeof records.value === 'object') {
+          tabs.value = Object.keys(records.value)
+          selectedTab.value = tabs.value[0]
+          content.value = records.value[tabs.value[0]]
         }
       })
-          .catch(error => notyf.error(error.message))
-          .then(response => notyf.success(response.data.message))
-          .finally(() => {
-            isLoading.value = false
-            fetchData()
-          })
-    }
-    const selectTab = async (tab) => {
-      console.log(tab)
-      selectedTab.value = tab
-      content.value = records.value[tab]
-    }
-    onBeforeMount(fetchData)
-    return {
-      model, content, tabs, clearAll, isLoading, selectedTab, selectTab
-    }
-  }
+      .catch(error => notify.error(error.message))
+      .finally(() => isLoading.value = false)
 }
+const clearAll = async () => {
+  // Checking if the data is loading and if it is, it will return and not load the data again.
+  if (isLoading.value) return
+  isLoading.value = true
+  await axios.get(endpoint + '/clear-all', {
+    params: {
+      file: selectedTab.value
+    }
+  })
+      .catch(error => notify.error(error.message))
+      .then(response => notify.success(response.data.message))
+      .finally(() => {
+        isLoading.value = false
+        fetchData()
+      })
+}
+const selectTab = async (tab) => {
+  console.log(tab)
+  selectedTab.value = tab
+  content.value = records.value[tab]
+}
+onBeforeMount(fetchData);
+
 </script>
 
 <template>
@@ -76,15 +70,10 @@ export default {
             class="submit"
             type="button"
             @click="clearAll"
+            :disabled="isLoading"
         >
-          <svg v-if="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none"
-               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  fill="currentColor"></path>
-          </svg>
-          <span v-else>Clear All</span>
+          <Loading v-if="isLoading"/>
+          <span v-else>Clear</span>
         </button>
       </div>
     </div>
@@ -150,7 +139,3 @@ export default {
 
 
 </template>
-
-<style scoped>
-
-</style>
