@@ -85,7 +85,8 @@ npm run dev
 The same goes for website assets
 
 ### For visual learners ###
-![](https://youtu.be/ZXu4Y2Wt3-k)
+[![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
+
 
 
 
