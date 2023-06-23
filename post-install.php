@@ -44,11 +44,12 @@ function seek_and_destroy($dir) : void
 
 seek_and_destroy(__DIR__ . '/src/');
 seek_and_destroy($base . '.php');
+seek_and_destroy(__DIR__. '/deploy.sh');
+seek_and_destroy(__DIR__. '/build.sh');
 seek_and_destroy(__DIR__ . '/assets/');
 exec('composer install');
 chdir(__DIR__ . '/assets/admin');
 exec('npm install && npm run build');
 chdir(__DIR__ . '/assets/website');
 exec('npm install && npm run build');
-unlink(__DIR__ . '/admin.gif');
 unlink(__DIR__ . '/post-install.php');
