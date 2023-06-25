@@ -66,3 +66,4 @@ register_uninstall_hook( __FILE__, array( Plugin::class, 'uninstall' ) );
 |--------------------------------------------------------------------------
 */
 Plugin::init();
+

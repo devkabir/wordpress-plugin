@@ -39,7 +39,7 @@ final class Logs {
 		);
 		register_rest_route(
 			$this->namespace,
-			'/logs/clear-all',
+			'/logs/clean',
 			array(
 				array(
 					'methods'             => WP_REST_Server::READABLE,
@@ -83,13 +83,7 @@ final class Logs {
 	 * @return WP_Error|WP_REST_Response
 	 */
 	public function get_data() {
-		$contents = $this->read_logs();
-
-		return rest_ensure_response(
-			array(
-				'items' => $contents,
-			)
-		);
+		return rest_ensure_response( $this->read_logs() );
 	}
 
 	/**

@@ -1,4 +1,3 @@
-import Settings from '@/pages/Settings.vue';
 import {
   AdjustmentsVerticalIcon,
   ClipboardDocumentListIcon,
@@ -8,12 +7,12 @@ let routes = [
   {
     path: '/',
     name: 'Settings',
-    component: Settings,
+    component: ()=> import('@/pages/Settings.vue'),
     icon: AdjustmentsVerticalIcon,
   }, {
     path: '/logs',
     name: 'Logs',
-    component: () => import( './pages/Logs.vue' ),
+    component: () => import( '@/pages/Logs.vue' ),
     icon: ClipboardDocumentListIcon,
   }];
 
