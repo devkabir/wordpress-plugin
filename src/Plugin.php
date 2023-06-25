@@ -3,6 +3,7 @@
 namespace PluginPackage;
 
 use PluginPackage\Api\Logs;
+use PluginPackage\Api\Posts;
 use PluginPackage\Admin\Menu;
 use PluginPackage\Ajax\Message;
 use PluginPackage\Api\Settings;
@@ -46,5 +47,6 @@ class Plugin {
 	public static function api() {
 		Settings::instance();
 		Logs::instance();
+		Posts::instance();
 	}
 }

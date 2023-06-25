@@ -63,12 +63,12 @@ const route = useRoute();
       </div>
       <!--  Page header    -->
       <header >
-        <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 bg-white shadow">
+        <div class="mx-auto max-w-7xl p-4 sm:px-6 lg:px-8 bg-white shadow">
           <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900" v-text="route.name"></h1>
         </div>
       </header>
       <!--   Main content   -->
-      <main class="py-6 h-full px-4 sm:px-6 lg:px-8">
+      <main class="mt-4 h-full min-h-screen px-4 sm:px-6 lg:px-8">
         <router-view></router-view>
       </main>
     </div>
