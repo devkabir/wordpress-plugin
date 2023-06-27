@@ -1,4 +1,5 @@
 import {computed, inject, onBeforeMount, ref} from 'vue';
+
 /*
  |--------------------------------------------------------------------------
  | Basic functionality
@@ -18,7 +19,7 @@ export function useDataTable(props) {
     }
     isLoading.value = true;
     try {
-      const { data: responseData } = await axios.get(props.endpoint);
+      const {data: responseData} = await axios.get(props.endpoint);
       data.value = responseData;
     } catch (error) {
       notify.error(error.message);
@@ -97,7 +98,6 @@ export function useDataTable(props) {
   };
 }
 
-
 /*
  |--------------------------------------------------------------------------
  | Sort functionality
@@ -167,7 +167,6 @@ export function useSearch(data, props) {
   };
 }
 
-
 /*
 |--------------------------------------------------------------------------
 | Pagination functionality
@@ -176,7 +175,8 @@ export function useSearch(data, props) {
 export function usePagination(data, props) {
   // Create a reactive object to store the current page
   let currentPage = ref(1);
-
+  const createRangeArray = (start, end) => Array.from({length: end - start + 1},
+      (_, index) => start + index);
   // Parse the number of items per page from the props
   const per_page = parseInt(props.per_page);
 
@@ -197,8 +197,15 @@ export function usePagination(data, props) {
 
   // Compute an array of page numbers for pagination controls
   let pageNumbers = computed(() => {
-    return Array.from({length: totalPages.value}, (x, i) => i + 1);
+    if (totalPages.value < 6) {
+        return createRangeArray(currentPage.value, totalPages.value);
+    }
+    if (currentPage.value > 6 && (totalPages.value - currentPage.value) < 6) {
+      return createRangeArray(totalPages.value - 5, totalPages.value);
+    }
+    return [...createRangeArray(currentPage.value, (currentPage.value+2)), '...', ...createRangeArray(totalPages.value-2, totalPages.value)];
   });
+
 
   // Define methods to navigate between pages
   const previousPage = () => currentPage.value === 1 ?
@@ -212,7 +219,8 @@ export function usePagination(data, props) {
   // Compute some additional properties for displaying pagination information
   let from = computed(() => (currentPage.value - 1) * per_page + 1);
   let totalResults = computed(() => data.value.length);
-  let to = computed(() => Math.min(currentPage.value * per_page, totalResults.value));
+  let to = computed(
+      () => Math.min(currentPage.value * per_page, totalResults.value));
 
   // Return the state variables and methods
   return {
@@ -228,6 +236,7 @@ export function usePagination(data, props) {
     goTo,
   };
 }
+
 /*
 |--------------------------------------------------------------------------
 | Bulk action functionality

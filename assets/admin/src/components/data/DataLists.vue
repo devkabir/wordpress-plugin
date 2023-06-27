@@ -11,7 +11,7 @@ const route = useRoute();
 const props = defineProps({
   endpoint: {
     type: String,
-    required: true
+    required: true,
   },
 });
 const {
@@ -20,8 +20,8 @@ const {
   selectTab,
   clean,
   isLoading,
-  selectedTabContent
-} = useDataList(props)
+  selectedTabContent,
+} = useDataList(props);
 </script>
 
 <template>
@@ -33,7 +33,8 @@ const {
         <select id="tabs" v-model="selectedTab"
                 class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
                 name="tabs">
-          <option v-for="(tab, index) in tabs" :key="index" :selected="selectedTab === tab" class="capitalize" v-text="tab"
+          <option v-for="(tab, index) in tabs" :key="index" :selected="selectedTab === tab" class="capitalize"
+                  v-text="tab"
           >
 
           </option>
@@ -65,7 +66,7 @@ const {
          <pre class="whitespace-pre-wrap break-all text-sm font-medium text-gray-900"
               v-text="selectedTabContent"></pre>
       </div>
-      <div class="placeholder" v-else>No {{ route.name.toLowerCase() }} yet!</div>
+      <div v-else class="placeholder">No {{ route.name.toLowerCase() }} yet!</div>
     </div>
   </div>
 </template>

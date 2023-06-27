@@ -16,10 +16,10 @@ This is a foundation for building WordPress plugins.
 ### Features ###
 
 - Check used [Technologies](#technologies) features.
-- It replaces all dummy string during plugin creation.
-- It generate independent styles for both frontend and backend with any conflict with wordpress core and any plugin or themes.
-- It make zip for test plugin throughout team by one command.
-- It makes production build, push updates to github and revert all change from production to development with one command.
+- It replaces all placeholder strings during plugin creation.
+- It generates independent styles for both frontend and backend with any conflict with WordPress core and any plugin or themes.
+- It makes zip for test plugin throughout a team by one command.
+- It makes production build, push updates to GitHub and revert all changes from production to development with one command.
 
 ## Requirements ##
 - **node.js** v18.12.1

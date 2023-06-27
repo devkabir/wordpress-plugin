@@ -62,7 +62,7 @@ onBeforeMount(() => loadSettings());
           </div>
         </div>
         <div class="bg-gray-100 px-4 py-3 text-right sm:px-6">
-          <button class="submit" type="submit">
+          <button class="button-primary" type="submit">
             <Loading v-if="isLoading"/>
             <span v-else>Save</span>
           </button>
