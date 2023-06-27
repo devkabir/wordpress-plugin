@@ -61,13 +61,11 @@ final class Menu {
 	public function scripts() {
 		if ( 'dev' === MODE ) {
 			wp_enqueue_style( NAME, 'http://localhost:5173/style.scss', array(), VERSION );
-			wp_enqueue_script( NAME, 'http://localhost:5173/main.js', array(), VERSION, true );
+			wp_enqueue_script( NAME, 'http://localhost:5173/main.js', array( 'wp-i18n' ), VERSION, true );
 		} else {
 			wp_enqueue_style( NAME, URL . 'assets/admin/dist/index.css', array(), VERSION );
-			wp_enqueue_script( NAME, URL . 'assets/admin/dist/index.js', array(), VERSION, true );
+			wp_enqueue_script( NAME, URL . 'assets/admin/dist/index.js', array( 'wp-i18n' ), VERSION, true );
 		}
-		wp_enqueue_style( NAME, URL . 'assets/admin/dist/index.css', array(), VERSION );
-		wp_enqueue_script( NAME, URL . 'assets/admin/dist/index.js', array(), VERSION, true );
 		wp_localize_script( NAME, 'your_plugin_name', array(
 			'nonce' => wp_create_nonce( 'wp_rest' ),
 		) );

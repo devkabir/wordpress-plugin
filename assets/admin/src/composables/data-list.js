@@ -54,9 +54,9 @@ export function useDataList(props) {
           file: tab,
         },
       });
+      delete apiResponse.value[tab];
       // Display success notification and remove the cleaned tab from the response
       notify.success('Data cleaned successfully');
-      delete apiResponse.value[tab];
     } catch (error) {
       // Handle error
       notify.error(error.message);
