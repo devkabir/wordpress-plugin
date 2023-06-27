@@ -24,7 +24,7 @@ const columns = [
     label: 'URL',
     type: 'link',
     text: 'Visit',
-    showInSm: true
+    showInsm:true
   },
 
 ]

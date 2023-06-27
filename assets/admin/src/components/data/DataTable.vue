@@ -167,7 +167,7 @@ const {
 }
 
 .primary-column {
-  @apply py-3.5 pl-4 pr-3 text-left text-sm text-gray-900 sm: pl-6;
+  @apply py-3.5 pl-4 pr-3 text-left text-sm text-gray-900 sm:pl-6;
 }
 
 .lg-column {
@@ -179,7 +179,7 @@ const {
 }
 
 .sm-column {
-  @apply default-column hidden sm: table-cell
+  @apply default-column hidden sm:table-cell
 }
 
 .sort {
@@ -191,7 +191,7 @@ const {
 }
 
 .bulk-wrapper {
-  @apply w-full absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm: left-16;
+  @apply w-full absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16;
 }
 
 .button-pagination {
