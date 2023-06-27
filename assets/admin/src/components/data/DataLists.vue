@@ -2,7 +2,7 @@
 import Loading from '@/components/Loading.vue';
 import {useRoute} from 'vue-router';
 import {XMarkIcon} from '@heroicons/vue/24/outline';
-import {useDataList} from '@/composables/data-list.js';
+import {useDataList} from '@/composable/data-list.js';
 
 /**
  * Defined constants for this component.
