@@ -2,6 +2,11 @@
 
 namespace PluginPackage\Web;
 
+// If this file is called directly, abort.
+if ( ! defined( 'PluginPackage\NAME' ) ) {
+	exit;
+}
+
 use PluginPackage\Traits\Singleton;
 use PluginPackage\Traits\FileSystem;
 use const PluginPackage\DIR;

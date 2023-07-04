@@ -2,6 +2,11 @@
 
 namespace PluginPackage\Traits;
 
+// If this file is called directly, abort.
+if ( ! defined( 'PluginPackage\NAME' ) ) {
+	exit;
+}
+
 use PluginPackage\Api\Logs;
 use PluginPackage\Admin\Menu;
 use PluginPackage\Helpers\Log;
@@ -9,10 +14,6 @@ use PluginPackage\Api\Settings;
 use PluginPackage\Ajax\Message;
 use PluginPackage\Web\Shortcodes;
 
-/**
- * Singleton Trait
- * Provides functionality for creating a singleton instance of a class.
- */
 trait Singleton {
 	/**
 	 *  Singleton instance

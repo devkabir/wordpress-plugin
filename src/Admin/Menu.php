@@ -2,6 +2,11 @@
 
 namespace PluginPackage\Admin;
 
+// If this file is called directly, abort.
+if ( ! defined( 'PluginPackage\NAME' ) ) {
+	exit;
+}
+
 use PluginPackage\Traits\Singleton;
 use const PluginPackage\URL;
 use const PluginPackage\NAME;

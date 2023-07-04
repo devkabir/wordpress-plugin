@@ -30,7 +30,10 @@
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+    },
+    "platform-check": true,
+    "optimize-autoloader": true,
+    "sort-packages": true
   },
   "require": {
     "php": ">=7.1",

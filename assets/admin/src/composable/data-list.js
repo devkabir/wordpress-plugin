@@ -1,12 +1,12 @@
-import { computed, inject, onBeforeMount, ref } from 'vue';
+import { computed, inject, onBeforeMount, ref } from "vue";
 
 export function useDataList(props) {
   // Reactive state variables
   const isLoading = ref(false);
-  const axios = inject('axios');
-  const notify = inject('notify');
+  const axios = inject("axios");
+  const notify = inject("notify");
   const apiResponse = ref({});
-  const selectedTab = ref('');
+  const selectedTab = ref("");
 
   // Fetch data before the component is mounted
   const fetchData = async () => {
@@ -33,7 +33,9 @@ export function useDataList(props) {
   const tabs = computed(() => Object.keys(apiResponse.value));
 
   // Compute the content of the selected tab
-  const selectedTabContent = computed(() => apiResponse.value[selectedTab.value]);
+  const selectedTabContent = computed(
+    () => apiResponse.value[selectedTab.value]
+  );
 
   // Function to select a tab
   const selectTab = (tab) => {
@@ -56,7 +58,7 @@ export function useDataList(props) {
       });
       delete apiResponse.value[tab];
       // Display success notification and remove the cleaned tab from the response
-      notify.success('Data cleaned successfully');
+      notify.success("Data cleaned successfully");
     } catch (error) {
       // Handle error
       notify.error(error.message);

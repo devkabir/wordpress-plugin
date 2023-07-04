@@ -2,6 +2,11 @@
 
 namespace PluginPackage\Ajax;
 
+// If this file is called directly, abort.
+if ( ! defined( 'PluginPackage\NAME' ) ) {
+	exit;
+}
+
 use PluginPackage\Helpers\Log;
 use PluginPackage\Traits\Singleton;
 use const PluginPackage\NAME;

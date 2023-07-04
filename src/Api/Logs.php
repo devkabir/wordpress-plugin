@@ -2,6 +2,11 @@
 
 namespace PluginPackage\Api;
 
+// If this file is called directly, abort.
+if ( ! defined( 'PluginPackage\NAME' ) ) {
+	exit;
+}
+
 use WP_Error;
 use WP_REST_Server;
 use WP_REST_Request;

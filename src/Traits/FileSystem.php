@@ -2,6 +2,11 @@
 
 namespace PluginPackage\Traits;
 
+// If this file is called directly, abort.
+if ( ! defined( 'PluginPackage\NAME' ) ) {
+	exit;
+}
+
 trait FileSystem {
 	/**
 	 * It will hold wp file system instance.
