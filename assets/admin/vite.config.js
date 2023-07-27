@@ -18,14 +18,16 @@ export default defineConfig({
   build: {
     outDir,
     emptyOutDir: true,
-    minify: false,
-    cssCodeSplit: true,
+    minify: true,
+    sourcemap: true,
+    cssCodeSplit: false,
     rollupOptions: {
       input: {
         index: path.resolve(root, "index.html"),
       },
       output: {
         entryFileNames: "[name].js",
+        chunkFileNames: "[name].js",
         assetFileNames: "[name][extname]",
       },
     },

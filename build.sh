@@ -21,10 +21,6 @@ progress_message "Preparing build directory..."
 rm -rf ./"$plugin_name" ./"$plugin_name".zip
 mkdir ./"$plugin_name"
 
-# start build process.
-progress_message "Updating asset file..."
-sed -i '9s#//# #' ./assets/admin/src/main.js
-sed -i '10s|^|// |' ./assets/admin/src/main.js
 
 # build assets
 progress_message "Building admin template..."
@@ -44,10 +40,11 @@ rm ./"$plugin_name"/composer.lock
 # Remove dev data
 progress_message "Removing dev data..."
 sed -i '13d;67,70d;73d' ./"$plugin_name"/src/Admin/Menu.php
-sed -i '15d;34,38d;42d;57-59d' ./"$plugin_name"/src/Web/Shortcodes.php
-sed -i '11d;28,30d' ./"$plugin_name"/src/Traits/Api.php
-sed -i '48d' ./"$plugin_name"/"$plugin_name.php"
-sed -i '1d' ./"$plugin_name"/assets/dist/index.html
+sed -i '15d;34,38d;42d;57d' ./"$plugin_name"/src/Web/Shortcodes.php
+sed -i '27d' ./"$plugin_name"/src/Traits/Api.php
+# sed -i '48d' ./"$plugin_name"/"$plugin_name.php"
+sed -i '1,2d' ./"$plugin_name"/assets/admin/dist/index.html
+sed -i '1,2d' ./"$plugin_name"/assets/website/dist/form/index.html
 
 # Add index.php to every directory
 progress_message "Adding index.php to every directory..."
@@ -62,8 +59,6 @@ progress_message "Reverting changes..."
 rm -rf ./assets/admin/dist
 rm -rf ./assets/website/dist
 rm -rf ./"$plugin_name"
-sed -i '10s#//# #' ./assets/admin/src/main.js
-sed -i '9s|^|// |' ./assets/admin/src/main.js
 
 # Completion message
 progress_message "Build process completed successfully."

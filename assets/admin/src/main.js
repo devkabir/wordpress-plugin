@@ -7,7 +7,7 @@ import { Notyf } from "notyf";
 // Import styles
 import "./style.scss";
 
-// Import the main App component
+// // Import the main App component
 import App from "./App.vue";
 
 // Import the routes configuration

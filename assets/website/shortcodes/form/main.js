@@ -1,20 +1,33 @@
 import "./../style.scss";
-import $ from "jquery";
 import { Notyf } from "notyf";
 
 let notify = new Notyf();
 let isLoading = false;
-$(document).ready(function () {
+
+
+
+
+(function ($) {
+  'use strict';
+
+
+  /**
+     * Handles the form submission event.
+     * @param {Event} e - The form submission event.
+     */
   $("#quote-form").on("submit", function (e) {
     e.preventDefault();
     let submitButton = $(this).find("button");
+
+    // Check if already loading
     if (true === isLoading) {
       return;
     }
+
     isLoading = true;
-    if (isLoading) {
-      submitButton.text("Sending...");
-    }
+    submitButton.text("Sending...");
+
+    // Make AJAX request
     $.ajax({
       method: "POST",
       url: window.location.origin + "/wp-admin/admin-ajax.php",
@@ -26,10 +39,12 @@ $(document).ready(function () {
       },
     })
       .done((response) => {
+        // Handle success response
         if (response.success) {
           notify.success(response.data);
           $(this).trigger("reset");
         } else {
+          // Handle error response
           notify.error(response.data);
         }
       })
@@ -39,4 +54,4 @@ $(document).ready(function () {
         submitButton.empty().text("Save");
       });
   });
-});
+})(jQuery);

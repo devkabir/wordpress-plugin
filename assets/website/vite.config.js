@@ -20,16 +20,22 @@ export default defineConfig({
         emptyOutDir: true,
         minify: true,
         cssCodeSplit: false,
-        sourcemap: false,
+        sourcemap: true,
         rollupOptions: {
+            external: ['jquery'],
             input: {
                 form: fileURLToPath(new URL('./shortcodes/form/index.html', import.meta.url)),
             },
             output: {
-                assetFileNames: '[name][extname]',
-                entryFileNames: '[name].js'
+                entryFileNames: '[name].js',
+                chunkFileNames: '[name].js',
+                assetFileNames: '[name].[ext]',
+                globals: {
+                    $: 'jquery'
+                }
+
             }
         },
 
-    },
+    }
 })

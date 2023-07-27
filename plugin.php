@@ -45,7 +45,7 @@ require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 | Define default constants
 |--------------------------------------------------------------------------
 */
-define( 'PluginPackage\MODE', 'dev' );
+define( 'PluginPackage\MODE', 'prod' );
 define( 'PluginPackage\NAME', 'your-plugin-name' );
 define( 'PluginPackage\VERSION', '1.0.0' );
 define( 'PluginPackage\DIR', plugin_dir_path( __FILE__ ) );
