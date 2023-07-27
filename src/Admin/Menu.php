@@ -73,6 +73,7 @@ final class Menu {
 		}
 		wp_localize_script( NAME, 'your_plugin_name', array(
 			'nonce' => wp_create_nonce( 'wp_rest' ),
+			'api_endpoint' => get_rest_url( null, 'your-plugin-name/v1/' ),
 		) );
 	}
 }
