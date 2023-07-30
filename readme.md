@@ -29,7 +29,11 @@ This is a foundation for building WordPress plugins.
 
 ## Documentation
 
-Check [here](https://github.com/devkabir/wordpress-plugin/wiki) 
+- [How to install](https://github.com/devkabir/wordpress-plugin/wiki#how-to-install)
+- [Project Organization](https://github.com/devkabir/wordpress-plugin/wiki#project-organization)
+- Components
+  - [List](https://github.com/devkabir/wordpress-plugin/wiki/DataList)
+  - [Table](https://github.com/devkabir/wordpress-plugin/wiki/DataTable)
 
 ## For visual learners
 [![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
