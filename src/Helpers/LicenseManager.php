@@ -122,10 +122,14 @@ final class LicenseManager {
 			// Extract the name, version, author, network, and plugin URI from the plugin data.
 			$formatted = array(
 				'name' => wp_strip_all_tags( $plugin_data['Name'] ),
-				'version' => array_key_exists( 'Version',
-					$plugin_data ) ? wp_strip_all_tags( $plugin_data['Version'] ) : '-',
-				'network' => array_key_exists( 'Network',
-					$plugin_data ) ? wp_strip_all_tags( $plugin_data['Network'] ) : false,
+				'version' => array_key_exists(
+					'Version',
+					$plugin_data
+				) ? wp_strip_all_tags( $plugin_data['Version'] ) : '-',
+				'network' => array_key_exists(
+					'Network',
+					$plugin_data
+				) ? wp_strip_all_tags( $plugin_data['Network'] ) : false,
 			);
 			// If a plugin is active, add it to the `active_plugins` array.
 			if ( in_array( $plugin_file, $active_plugins_keys, true ) ) {
