@@ -22,7 +22,8 @@ use PluginPackage\Traits\Singleton;
  * @package PluginPackage\Api
  */
 final class Posts {
-	use Api, Singleton;
+	use Api;
+	use Singleton;
 
 
 	/**
@@ -51,10 +52,8 @@ final class Posts {
 	 */
 	public function get_data() {
 		$defaults = array(
-			'numberposts'      => 100,
+			'numberposts' => 100,
 		);
-		return rest_ensure_response( get_posts($defaults));
+		return rest_ensure_response( get_posts( $defaults ) );
 	}
-
-
 }

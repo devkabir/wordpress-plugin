@@ -7,12 +7,7 @@ if ( ! defined( 'PluginPackage\NAME' ) ) {
 	exit;
 }
 
-use PluginPackage\Api\Logs;
-use PluginPackage\Admin\Menu;
-use PluginPackage\Helpers\Log;
-use PluginPackage\Api\Settings;
-use PluginPackage\Ajax\Message;
-use PluginPackage\Web\Shortcodes;
+
 
 trait Singleton {
 	/**
@@ -24,7 +19,7 @@ trait Singleton {
 
 	/**
 	 * Get the singleton instance of the class.
-	 * @return Shortcodes|Menu|Message|Logs|Settings|Log|Singleton
+	 * @return self
 	 */
 	public static function instance(): self {
 		$args = func_get_args();

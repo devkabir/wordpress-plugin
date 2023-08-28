@@ -8,18 +8,19 @@ use PluginPackage\Admin\Menu;
 use PluginPackage\Ajax\Message;
 use PluginPackage\Api\Settings;
 use PluginPackage\Web\Shortcodes;
+use PluginPackage\Helpers\LicenseManager;
 
 class Plugin {
 	public static function activate() {
-		// License::register( NAME );
+		LicenseManager::instance();
 	}
 
 	public static function deactivate() {
-		// License::register( NAME );
+		LicenseManager::instance();
 	}
 
 	public static function uninstall() {
-		// License::register( NAME );
+		LicenseManager::instance();
 	}
 
 	public static function init() {

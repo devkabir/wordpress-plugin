@@ -22,7 +22,8 @@ use PluginPackage\Traits\Singleton;
  * @package PluginPackage\Api
  */
 final class Logs {
-	use Api, Singleton;
+	use Api;
+	use Singleton;
 
 
 	/**
@@ -77,9 +78,7 @@ final class Logs {
 			}
 		}
 
-
 		return rest_ensure_response( array( 'message' => $message ) );
-
 	}
 
 	/**

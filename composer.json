@@ -12,12 +12,13 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "automattic/vipwpcs": "^2.3",
-    "roots/wordpress-no-content": "^6.1"
+    "roots/wordpress-no-content": "^5.3",
+    "squizlabs/php_codesniffer": "3.*",
+    "wp-coding-standards/wpcs": "^3.0"
   },
   "scripts": {
-    "lint": "phpcs --extensions=php -s -p",
-    "format": "phpcbf -p",
+    "lint": "phpcs src --standard=WordPress-Extra -s --report=source",
+    "format": "phpcbf src --standard=WordPress-Extra -s --report=source",
     "post-create-project-cmd": [
       "@php ./post-install.php"
     ]
@@ -36,7 +37,7 @@
     "sort-packages": true
   },
   "require": {
-    "php": ">=7.1",
+    "php": "^7.1",
     "ext-json": "*"
   }
 }

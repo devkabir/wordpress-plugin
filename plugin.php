@@ -38,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
 | Load class autoloader
 |--------------------------------------------------------------------------
 */
-require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +48,7 @@ require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 define( 'PluginPackage\MODE', 'prod' );
 define( 'PluginPackage\NAME', 'your-plugin-name' );
 define( 'PluginPackage\VERSION', '1.0.0' );
+define( 'PluginPackage\FILE', __FILE__ );
 define( 'PluginPackage\DIR', plugin_dir_path( __FILE__ ) );
 define( 'PluginPackage\URL', plugin_dir_url( __FILE__ ) );
 
@@ -66,4 +67,3 @@ register_uninstall_hook( __FILE__, array( Plugin::class, 'uninstall' ) );
 |--------------------------------------------------------------------------
 */
 Plugin::init();
-

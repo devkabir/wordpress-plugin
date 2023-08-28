@@ -16,7 +16,8 @@ use PluginPackage\Helpers\Log;
 use PluginPackage\Traits\Singleton;
 
 final class Settings {
-	use Api, Singleton;
+	use Api;
+	use Singleton;
 
 	/**
 	 * Register the routes for serving data from custom table

@@ -71,9 +71,13 @@ final class Menu {
 			wp_enqueue_style( NAME, URL . 'assets/admin/dist/style.css', array(), VERSION );
 			wp_enqueue_script( NAME, URL . 'assets/admin/dist/index.js', array( 'wp-i18n' ), VERSION, true );
 		}
-		wp_localize_script( NAME, 'your_plugin_name', array(
-			'nonce' => wp_create_nonce( 'wp_rest' ),
-			'api_endpoint' => get_rest_url( null, 'your-plugin-name/v1/' ),
-		) );
+		wp_localize_script(
+			NAME,
+			'your_plugin_name',
+			array(
+				'nonce'        => wp_create_nonce( 'wp_rest' ),
+				'api_endpoint' => get_rest_url( null, 'your-plugin-name/v1/' ),
+			)
+		);
 	}
 }

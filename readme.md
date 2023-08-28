@@ -20,6 +20,7 @@ This is a foundation for building WordPress plugins.
 - It generates independent styles for both frontend and backend with any conflict with WordPress core and any plugin or themes.
 - It makes zip for test plugin throughout a team by one command.
 - It makes production build, push updates to GitHub and revert all changes from production to development with one command.
+- You can manage your plugin license and support with this. N.B. You will need a management system. you can check out my [WordPress Plugin Management System](https://github.com/devkabir/wordpress-plugin-management-system)
 
 ## Requirements ##
 - **node.js** v18.12.1
@@ -37,7 +38,3 @@ This is a foundation for building WordPress plugins.
 
 ## For visual learners
 [![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
-
-
-
-

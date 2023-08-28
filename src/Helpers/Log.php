@@ -12,7 +12,8 @@ use PluginPackage\Traits\FileSystem;
 use const PluginPackage\NAME;
 
 final class Log {
-	use Singleton, FileSystem;
+	use Singleton;
+	use FileSystem;
 
 
 	/**
@@ -91,6 +92,4 @@ final class Log {
 
 		return $log;
 	}
-
-
 }

@@ -47,5 +47,4 @@ class Message {
 			wp_send_json_error( __FILE__ );
 		}
 	}
-
 }

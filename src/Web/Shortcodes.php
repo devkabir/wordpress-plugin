@@ -16,7 +16,8 @@ use const PluginPackage\MODE;
 use const PluginPackage\VERSION;
 
 class Shortcodes {
-	use FileSystem, Singleton;
+	use FileSystem;
+	use Singleton;
 
 	/**
 	 * It takes an array of shortcode tags, and for each tag, it adds a shortcode callback that calls the `scripts` and
@@ -29,21 +30,21 @@ class Shortcodes {
 		foreach ( $tags as $tag ) {
 			add_shortcode(
 				$tag,
-				static function () use ($files, $tag) {
+				static function () use ( $files, $tag ) {
 					$handle = NAME . '-' . $tag;
 					if ( 'dev' === MODE ) {
 						wp_enqueue_style( $handle, 'http://localhost:5173/style.scss', array(), VERSION );
-						wp_enqueue_script( $handle, 'http://localhost:5173/' . $tag . '/main.js', array('jquery'), VERSION );
+						wp_enqueue_script( $handle, 'http://localhost:5173/' . $tag . '/main.js', array( 'jquery' ), VERSION );
 						$html_path = DIR . 'assets/website/shortcodes/' . $tag . '/index.html';
 					} else {
 						wp_enqueue_style( $handle, URL . 'assets/website/dist/style.css', array(), VERSION );
-						wp_enqueue_script( $handle, URL . 'assets/website/dist/' . $tag . '.js', array('jquery'), VERSION, true );
+						wp_enqueue_script( $handle, URL . 'assets/website/dist/' . $tag . '.js', array( 'jquery' ), VERSION, true );
 						$html_path = DIR . '/assets/website/dist/' . $tag . '/index.html';
 					}
 
 					add_filter(
 						'script_loader_tag',
-						function ($tag, $id) use ($handle) {
+						function ( $tag, $id ) use ( $handle ) {
 							if ( $handle === $id ) {
 								$tag = str_replace( '<script ', '<script type="module" ', $tag );
 							}
@@ -70,14 +71,13 @@ class Shortcodes {
 						echo wp_json_encode(
 							array(
 								'ajax_url' => admin_url( 'admin-ajax.php' ),
-								'nonce' => wp_create_nonce( NAME ),
+								'nonce'    => wp_create_nonce( NAME ),
 							)
 						)
-							?>
+					?>
 			</script>
-			<?php
+				<?php
 			}
 		);
-
 	}
 }
