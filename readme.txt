@@ -1,11 +1,11 @@
-=== Plugin-Name ===
+=== Your Plugin Name ===
 Contributors: (this should be a list of wordpress.org userid's)
 Donate link: https://example.com/
 Tags: tag1, tag2
 Requires at least: 5.3
-Tested up to: 6.1.1
-Stable tag: 4.3
-Requires PHP: 7.4
+Tested up to: 6.3.1
+Stable tag: 4.7
+Requires PHP: 7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
