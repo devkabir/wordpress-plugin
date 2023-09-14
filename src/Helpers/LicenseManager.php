@@ -15,7 +15,7 @@ final class LicenseManager {
 	use Singleton;
 
 	public const KEY = NAME . '-license-key';
-	private $api = 'https://example.com/api/org/license';
+	private $api     = 'https://example.com/api/org/license';
 
 	/**
 	 * LicenseManager constructor.
@@ -35,31 +35,31 @@ final class LicenseManager {
 		$site_url = esc_url( home_url() );
 
 		$data = array(
-			'url' => $site_url,
-			'action' => $this->get_current_action(),
+			'url'     => $site_url,
+			'action'  => $this->get_current_action(),
 			'version' => VERSION,
-			'name' => NAME,
+			'name'    => NAME,
 		);
 
 		$headers = array(
-			'user-agent' => 'PluginPackage;' . password_hash( $site_url, PASSWORD_BCRYPT ),
-			'Accept' => 'application/json',
-			'Content-Type' => 'application/json',
-			'Origin' => $site_url,
-			'Referer' => $site_url,
+			'user-agent'    => 'PluginPackage;' . password_hash( $site_url, PASSWORD_BCRYPT ),
+			'Accept'        => 'application/json',
+			'Content-Type'  => 'application/json',
+			'Origin'        => $site_url,
+			'Referer'       => $site_url,
 			'Cache-Control' => 'no-cache',
 		);
 
 		$response = wp_remote_post(
 			$this->api,
 			array(
-				'timeout' => 30,
+				'timeout'     => 30,
 				'redirection' => 5,
 				'httpversion' => '1.0',
-				'headers' => $headers,
-				'body' => wp_json_encode( $data ),
-				'sslverify' => false,
-				'cookies' => array(),
+				'headers'     => $headers,
+				'body'        => wp_json_encode( $data ),
+				'sslverify'   => false,
+				'cookies'     => array(),
 			)
 		);
 		if ( is_wp_error( $response ) ) {
@@ -83,5 +83,4 @@ final class LicenseManager {
 
 		return $backtrace[4]['function'];
 	}
-
 }

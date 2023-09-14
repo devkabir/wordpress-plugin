@@ -26,9 +26,6 @@
 | If this file is called directly, abort.
 |--------------------------------------------------------------------------
 */
-
-use PluginPackage\Plugin;
-
 if ( ! defined( 'WPINC' ) ) {
 	exit;
 }
@@ -39,6 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
 |--------------------------------------------------------------------------
 */
 require_once __DIR__ . '/vendor/autoload.php';
+use PluginPackage\Plugin;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +47,6 @@ define( 'PluginPackage\MODE', 'prod' );
 define( 'PluginPackage\NAME', 'your-plugin-name' );
 define( 'PluginPackage\VERSION', '1.0.0' );
 define( 'PluginPackage\FILE', __FILE__ );
-define( 'PluginPackage\DIR', plugin_dir_path( __FILE__ ) );
-define( 'PluginPackage\URL', plugin_dir_url( __FILE__ ) );
 
 /*
 |--------------------------------------------------------------------------

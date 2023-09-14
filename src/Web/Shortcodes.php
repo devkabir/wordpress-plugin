@@ -9,10 +9,9 @@ if ( ! defined( 'PluginPackage\NAME' ) ) {
 
 use PluginPackage\Traits\Singleton;
 use PluginPackage\Traits\FileSystem;
-use const PluginPackage\DIR;
-use const PluginPackage\URL;
 use const PluginPackage\NAME;
 use const PluginPackage\MODE;
+use const PluginPackage\FILE;
 use const PluginPackage\VERSION;
 
 class Shortcodes {
@@ -33,15 +32,16 @@ class Shortcodes {
 				static function () use ( $files, $tag ) {
 					$handle = NAME . '-' . $tag;
 					if ( 'dev' === MODE ) {
-						wp_enqueue_style( $handle, 'http://localhost:5173/style.scss', array(), VERSION );
-						wp_enqueue_script( $handle, 'http://localhost:5173/' . $tag . '/main.js', array( 'jquery' ), VERSION );
-						$html_path = DIR . 'assets/website/shortcodes/' . $tag . '/index.html';
+						$style_path  = 'http://localhost:5173/style.scss';
+						$script_path = 'http://localhost:5173/' . $tag . '/main.js';
+						$html_path   = 'assets/website/shortcodes/' . $tag . '/index.html';
 					} else {
-						wp_enqueue_style( $handle, URL . 'assets/website/dist/style.css', array(), VERSION );
-						wp_enqueue_script( $handle, URL . 'assets/website/dist/' . $tag . '.js', array( 'jquery' ), VERSION, true );
-						$html_path = DIR . '/assets/website/dist/' . $tag . '/index.html';
+						$style_path  = plugins_url( 'assets/website/dist/style.css', FILE );
+						$script_path = plugins_url( 'http://localhost:5173/' . $tag . '/main.js', FILE );
+						$html_path   = '/assets/website/dist/' . $tag . '/index.html';
 					}
-
+					wp_enqueue_style( $handle, $script_path, array(), VERSION );
+					wp_enqueue_script( $handle, $script_path, array(), VERSION, true );
 					add_filter(
 						'script_loader_tag',
 						function ( $tag, $id ) use ( $handle ) {
@@ -54,10 +54,8 @@ class Shortcodes {
 						10,
 						3
 					);
-					$contents = $files->get_contents( $html_path );
-					$contents = str_replace( '<script src="./main.js" type="module"></script>', '', $contents );
 
-					return $contents;
+					return $files->get_contents( plugin_dir_path( FILE . $html_path ) );
 				}
 			);
 		}
@@ -65,17 +63,17 @@ class Shortcodes {
 			'wp_footer',
 			function () {
 				?>
-			<script>
-				const your_plugin_name =
+				<script>
+					const your_plugin_name =
 					<?php
-						echo wp_json_encode(
-							array(
-								'ajax_url' => admin_url( 'admin-ajax.php' ),
-								'nonce'    => wp_create_nonce( NAME ),
-							)
+					echo wp_json_encode(
+						array(
+							'ajax_url' => admin_url( 'admin-ajax.php' ),
+							'nonce'    => wp_create_nonce( NAME ),
 						)
+					)
 					?>
-			</script>
+				</script>
 				<?php
 			}
 		);

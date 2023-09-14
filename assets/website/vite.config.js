@@ -1,9 +1,7 @@
-
-
 import inject from '@rollup/plugin-inject'
-import { resolve } from 'path'
-import { fileURLToPath } from 'url'
-import { defineConfig } from 'vite'
+import {resolve} from 'path'
+import {fileURLToPath} from 'url'
+import {defineConfig} from 'vite'
 
 const rootPath = resolve(__dirname, './shortcodes')
 // https://vitejs.dev/config/

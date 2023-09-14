@@ -39,17 +39,17 @@ rm ./"$plugin_name"/composer.lock
 
 # Remove dev data
 progress_message "Removing dev data..."
+sed -i '46d' ./"$plugin_name"/"$plugin_name.php"
 sed -i '13d;67,70d;73d' ./"$plugin_name"/src/Admin/Menu.php
-sed -i '15d;34,38d;42d;57d' ./"$plugin_name"/src/Web/Shortcodes.php
+sed -i '13d;34,38d;42d' ./"$plugin_name"/src/Web/Shortcodes.php
 sed -i '27d' ./"$plugin_name"/src/Traits/Api.php
-# sed -i '48d' ./"$plugin_name"/"$plugin_name.php"
 sed -i '1,2d' ./"$plugin_name"/assets/admin/dist/index.html
 sed -i '1,2d' ./"$plugin_name"/assets/website/dist/form/index.html
 
 # Add index.php to every directory
 progress_message "Adding index.php to every directory..."
 find ./"$plugin_name" -type d -exec sh -c "echo '<?php // silence' > {}/index.php" \;
-
+./vendor/bin/phpcbf src --standard=WordPress-Extra -s --report=source
 # Create zip archive
 progress_message "Creating zip archive..."
 "C:\Program Files\7-Zip\7z.exe" a ./"$plugin_name".zip ./"$plugin_name"/*
