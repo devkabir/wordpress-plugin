@@ -8,13 +8,25 @@ if ( ! defined( 'PluginPackage\NAME' ) ) {
 }
 
 use PluginPackage\Traits\Singleton;
-use const PluginPackage\URL;
-use const PluginPackage\NAME;
+use const PluginPackage\FILE;
 use const PluginPackage\MODE;
+use const PluginPackage\NAME;
 use const PluginPackage\VERSION;
 
 final class Menu {
 	use Singleton;
+
+	/**
+	 * Menu constructor.
+	 */
+	protected function __construct() {
+		// Register Menu.
+		add_action( 'admin_menu', array( $this, 'register' ) );
+		// Load script.
+		add_action( 'admin_enqueue_scripts', array( $this, 'scripts' ) );
+		// Add module attribute.
+		add_filter( 'script_loader_tag', array( $this, 'add_module' ), 10, 3 );
+	}
 
 
 	/**
@@ -64,19 +76,22 @@ final class Menu {
 	 * @return void
 	 */
 	public function scripts() {
+
 		if ( 'dev' === MODE ) {
-			wp_enqueue_style( NAME, 'http://localhost:5174/style.scss', array(), VERSION );
-			wp_enqueue_script( NAME, 'http://localhost:5174/main.js', array( 'wp-i18n' ), VERSION, true );
+			$style_path  = 'http://localhost:5000/style.scss';
+			$script_path = 'http://localhost:5000/main.js';
 		} else {
-			wp_enqueue_style( NAME, URL . 'assets/admin/dist/style.css', array(), VERSION );
-			wp_enqueue_script( NAME, URL . 'assets/admin/dist/index.js', array( 'wp-i18n' ), VERSION, true );
+			$style_path  = plugins_url( 'assets/admin/dist/index.css', FILE );
+			$script_path = plugins_url( 'assets/admin/dist/index.js', FILE );
 		}
+		wp_enqueue_style( NAME, $style_path, array(), VERSION );
+		wp_enqueue_script( NAME, $script_path, array(), VERSION, true );
 		wp_localize_script(
 			NAME,
-			'your_plugin_name',
+			str_replace( '-', '_', NAME ),
 			array(
 				'nonce'        => wp_create_nonce( 'wp_rest' ),
-				'api_endpoint' => get_rest_url( null, 'your-plugin-name/v1/' ),
+				'api_endpoint' => get_rest_url( null, NAME . '/v1/' ),
 			)
 		);
 	}

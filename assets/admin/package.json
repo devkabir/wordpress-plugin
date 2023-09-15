@@ -1,30 +1,25 @@
 {
   "name": "admin",
+  "version": "0.0.0",
   "private": true,
-  "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build:dev": "vite build --mode dev",
+    "dev": "vite --port=5000",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.18",
-    "axios": "^1.2.1",
-    "notyf": "^3.10.0",
-    "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "pinia": "^2.1.6",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.3",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "autoprefixer": "^10.4.13",
-    "jshint": "^2.13.6",
-    "postcss": "^8.4.19",
-    "postcss-prefix-selector": "^1.16.0",
-    "sass": "^1.56.2",
-    "tailwindcss": "^3.2.4",
-    "vite": "^4.0.0"
+    "@rushstack/eslint-patch": "^1.3.3",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "prettier": "^3.0.3",
+    "vite": "^4.4.9"
   }
 }

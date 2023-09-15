@@ -8,7 +8,6 @@ if ( ! defined( 'PluginPackage\NAME' ) ) {
 }
 
 
-
 trait Singleton {
 	/**
 	 *  Singleton instance

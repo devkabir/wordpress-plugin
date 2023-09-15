@@ -1,39 +1,39 @@
-import inject from '@rollup/plugin-inject'
-import {resolve} from 'path'
-import {fileURLToPath} from 'url'
-import {defineConfig} from 'vite'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import * as path from "path";
 
-const rootPath = resolve(__dirname, './shortcodes')
+const root = path.resolve(__dirname, "./src");
+const outDir = path.resolve(__dirname, "./dist");
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [
-        inject({
-            $: 'jquery',
-        }),
-    ],
-    root: rootPath,
-    css: rootPath,
-    build: {
-        outDir: resolve(__dirname, './dist'),
-        emptyOutDir: true,
-        minify: true,
-        cssCodeSplit: false,
-        sourcemap: true,
-        rollupOptions: {
-            external: ['jquery'],
-            input: {
-                form: fileURLToPath(new URL('./shortcodes/form/index.html', import.meta.url)),
-            },
-            output: {
-                entryFileNames: '[name].js',
-                chunkFileNames: '[name].js',
-                assetFileNames: '[name].[ext]',
-                globals: {
-                    $: 'jquery'
-                }
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 
-            }
-        },
-
+  plugins: [vue()],
+  root,
+  build: {
+    outDir,
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        index: path.resolve(root, "index.html"),
+      },
+      output: {
+        entryFileNames: "[name].js",
+        chunkFileNames: "[name].js",
+        assetFileNames: "[name][extname]",
+      },
+    },
+  },
+  server: {
+    port: 4000,
+    hmr: {
+      port: 4000,
+      host: "localhost",
+      protocol: "ws"
     }
-})
+  }
+});

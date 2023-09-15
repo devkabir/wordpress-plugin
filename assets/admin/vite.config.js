@@ -18,9 +18,6 @@ export default defineConfig({
   build: {
     outDir,
     emptyOutDir: true,
-    minify: true,
-    sourcemap: true,
-    cssCodeSplit: false,
     rollupOptions: {
       input: {
         index: path.resolve(root, "index.html"),
@@ -33,10 +30,10 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,
-    hmr:{
-      port:5173,
-      host:"localhost",
+    port: 5000,
+    hmr: {
+      port: 5000,
+      host: "localhost",
       protocol: "ws"
     }
   }

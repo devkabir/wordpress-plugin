@@ -15,7 +15,7 @@ trait Api {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'your-plugin-name/v1';
+	protected string $namespace = 'your-plugin-name/v1';
 
 
 	/**

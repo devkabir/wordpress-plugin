@@ -1,13 +1,4 @@
-<script setup>
-import {useCounterStore} from "./stores/counter";
-import {storeToRefs} from "pinia";
-
-const {count} = storeToRefs(useCounterStore())
-const {increment, doubleCount} = useCounterStore()
-</script>
-
 <template>
-  <h1>{{ count }}</h1>
   <button @click="increment">
     Add one
   </button>
@@ -15,9 +6,13 @@ const {increment, doubleCount} = useCounterStore()
     Make it double
   </button>
 </template>
+<script setup>
+import {useCounterStore} from "./stores/counter";
 
+const {increment , doubleCount } = useCounterStore()
+</script>
 <style scoped>
-button {
+button{
   cursor: pointer;
   border: 0 #abb8c3;
   margin-left: 5px;

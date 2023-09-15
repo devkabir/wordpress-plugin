@@ -25,8 +25,27 @@ This is a foundation for building WordPress plugins.
 ## Requirements ##
 - **node.js** v18.12.1
 - **npm** v9.2.0
-- **PHP** v7.1
+- **PHP** v7.4
 - **VS Code extension** DEVSENSE.phptools-vscode
+
+## For Fresh Start #
+
+- Stable version
+
+```bash
+composer create-project devkabir/wordpress-plugin <your-plugin-name> 
+```
+- Dev version with dummy content
+
+```bash
+composer create-project devkabir/wordpress-plugin:dev-master <your-plugin-name> 
+```
+
+- Dev version with no content
+
+```bash
+composer create-project devkabir/wordpress-plugin:dev-fresh <your-plugin-name> 
+```
 
 ## Documentation
 

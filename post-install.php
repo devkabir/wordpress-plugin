@@ -41,12 +41,7 @@ function seek_and_destroy( $dir ): void {
 
 }
 
-seek_and_destroy( __DIR__ . '/src/' );
-seek_and_destroy( $base . '.php' );
-seek_and_destroy( __DIR__ . '/deploy.sh' );
-seek_and_destroy( __DIR__ . '/build.sh' );
-seek_and_destroy( __DIR__ . '/readme.txt' );
-seek_and_destroy( __DIR__ . '/assets/' );
+seek_and_destroy( __DIR__ );
 exec( 'composer install' );
 chdir( __DIR__ . '/assets/admin' );
 exec( 'npm install' );
