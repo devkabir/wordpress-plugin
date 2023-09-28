@@ -60,11 +60,6 @@ This is a foundation for building WordPress plugins.
 
 ## For Fresh Start #
 
-- Stable version
-
-```bash
-composer create-project devkabir/wordpress-plugin <your-plugin-name> 
-```
 - Dev version with dummy content
 
 ```bash
