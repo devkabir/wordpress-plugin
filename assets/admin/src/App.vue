@@ -1,19 +1,29 @@
 <script setup>
-import {useCounterStore} from "./stores/counter";
-import {storeToRefs} from "pinia";
-
-const {count} = storeToRefs(useCounterStore())
-const {increment, doubleCount} = useCounterStore()
+import { ref } from "vue";
+import { fetchData } from "./composables";
+import { useCounterStore } from "./stores/counter";
+const store = useCounterStore();
+const response = ref();
+const testAjax = async () => {
+  response.value = await fetchData('ajax_example', 'ajax_example');
+  console.log(response);
+}
+testAjax();
 </script>
 
 <template>
-  <h1>{{ count }}</h1>
-  <button @click="increment">
-    Add one
-  </button>
-  <button @click="doubleCount">
-    Make it double
-  </button>
+  <div>
+    <h1>Counter from store</h1>
+    <h1>{{ store.count }}</h1>
+    <button @click="store.increment">
+      Add one
+    </button>
+    <button @click="store.doubleCount">
+      Make it double
+    </button>
+    <h1>Test Ajax action</h1>
+    <p v-html="response?.file"></p>
+  </div>
 </template>
 
 <style scoped>
