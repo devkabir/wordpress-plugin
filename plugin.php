@@ -38,6 +38,10 @@ if ( ! defined( 'WPINC' ) ) {
 require_once __DIR__ . '/vendor/autoload.php';
 use PluginPackage\Plugin;
 
+\Spatie\Ignition\Ignition::make()
+	->applicationPath( __DIR__ )
+	->register();
+
 /*
 |--------------------------------------------------------------------------
 | Define default constants
