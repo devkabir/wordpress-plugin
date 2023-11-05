@@ -22,14 +22,14 @@ This is a foundation for building WordPress plugins.
 - It makes zip for test plugin throughout a team by one command.
 - It makes production build, push updates to GitHub and revert all changes from production to development with one command.
 - You can manage your plugin license and support with this. N.B. You will need a management system. you can check out my [WordPress Plugin Management System](https://github.com/devkabir/wordpress-plugin-management-system)
-- A nice error handling page like Laravel. N.B You will need php 8.0 to use this one.
+- A nice error handling page like Laravel.
   ![](./debugger.png)
 
 ## Requirements
 
 - **node.js** v18.12.1
 - **npm** v9.2.0
-- **PHP** v7.4 in fresh branch
+- **PHP** v8.0
 - **VS Code extension** DEVSENSE.phptools-vscode
 
 ## For Fresh Start
