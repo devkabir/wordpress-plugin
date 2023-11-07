@@ -51,6 +51,9 @@ composer create-project devkabir/wordpress-plugin:dev-fresh <your-plugin-name>
   - [Table](https://github.com/devkabir/wordpress-plugin/wiki/DataTable)
 
 ## For visual learners
-[![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
+- How to start
+  - [![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
+- How to debug
+  - [![Video Title](https://img.youtube.com/vi/rdTug4q5tEM/0.jpg)](https://www.youtube.com/watch?v=rdTug4q5tEM)
 
 
