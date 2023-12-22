@@ -12,7 +12,7 @@
  * Description:       Description of the plugin.
  * Version:           1.0.0
  * Requires at least: 5.3
- * Requires PHP:      7.4
+ * Requires PHP:      7.1
  * Author:            Your Name
  * Author URI:        https://example.com
  * Text Domain:       your-plugin-name
@@ -26,7 +26,7 @@
 | If this file is called directly, abort.
 |--------------------------------------------------------------------------
 */
-if ( ! defined( 'WPINC' ) ) {
+if (!defined('WPINC')) {
 	exit;
 }
 
@@ -43,19 +43,20 @@ use PluginPackage\Plugin;
 | Define default constants
 |--------------------------------------------------------------------------
 */
-define( 'PluginPackage\MODE', 'prod' );
-define( 'PluginPackage\NAME', 'your-plugin-name' );
-define( 'PluginPackage\VERSION', '1.0.0' );
-define( 'PluginPackage\FILE', __FILE__ );
+define('PluginPackage\MODE', 'prod');
+define('PluginPackage\NAME', 'your-plugin-name');
+define('PluginPackage\VERSION', '1.0.0');
+define('PluginPackage\FILE', __FILE__);
+
 
 /*
 |--------------------------------------------------------------------------
 | Activation, deactivation and uninstall event.
 |--------------------------------------------------------------------------
 */
-register_activation_hook( __FILE__, array( Plugin::class, 'activate' ) );
-register_deactivation_hook( __FILE__, array( Plugin::class, 'deactivate' ) );
-register_uninstall_hook( __FILE__, array( Plugin::class, 'uninstall' ) );
+register_activation_hook(__FILE__, array(Plugin::class, 'activate'));
+register_deactivation_hook(__FILE__, array(Plugin::class, 'deactivate'));
+register_uninstall_hook(__FILE__, array(Plugin::class, 'uninstall'));
 
 /*
 |--------------------------------------------------------------------------
