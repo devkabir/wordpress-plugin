@@ -19,7 +19,7 @@
     "lint": "phpcs src --standard=WordPress-Extra -s --report=source",
     "format": "phpcbf src --standard=WordPress-Extra -s --report=source",
     "post-create-project-cmd": [
-      "@php ./post-install.php"
+      "bash ./install.sh"
     ]
   },
   "autoload": {
