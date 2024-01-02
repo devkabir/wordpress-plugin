@@ -44,6 +44,12 @@ composer create-project devkabir/wordpress-plugin:dev-master <your-plugin-name>
 composer create-project devkabir/wordpress-plugin:dev-fresh <your-plugin-name>
 ```
 
+- Dev version for admin side only
+
+```bash
+composer create-project devkabir/wordpress-plugin:dev-only-admin <your-plugin-name>
+```
+
 ## Documentation
 
 - [How to install](https://github.com/devkabir/wordpress-plugin/wiki#how-to-install)
