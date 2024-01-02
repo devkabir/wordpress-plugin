@@ -1,9 +1,9 @@
-<?php
+<?php // phpcs:ignore
 
 namespace PluginPackage\Traits;
 
 // If this file is called directly, abort.
-if ( ! defined( 'PluginPackage\NAME' ) ) {
+if ( ! defined( 'PluginPackage\SLUG' ) ) {
 	exit;
 }
 

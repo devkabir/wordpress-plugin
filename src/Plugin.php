@@ -1,53 +1,39 @@
-<?php
+<?php // phpcs:ignore
 
 namespace PluginPackage;
 
-use PluginPackage\Api\Logs;
-use PluginPackage\Api\Posts;
-use PluginPackage\Admin\Menu;
-use PluginPackage\Ajax\Message;
-use PluginPackage\Api\Settings;
-use PluginPackage\Web\Shortcodes;
-use PluginPackage\Helpers\LicenseManager;
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+use PluginPackage\Controllers\Api\SettingController;
+use PluginPackage\Controllers\AdminController;
+use PluginPackage\Controllers\LicenseController;
+use PluginPackage\Controllers\LogController;
 
 class Plugin {
 	public static function activate() {
-		LicenseManager::instance();
+		LicenseController::class;
 	}
 
 	public static function deactivate() {
-		LicenseManager::instance();
+		LicenseController::class;
 	}
 
 	public static function uninstall() {
-		LicenseManager::instance();
+		LicenseController::class;
 	}
 
 	public static function init() {
 		if ( is_admin() ) {
-			self::admin();
+			AdminController::instance();
 		}
-		Message::instance();
-		Shortcodes::instance( array( 'form' ) );
-		add_action( 'rest_api_init', array( self::class, 'api' ) );
-	}
-
-	/**
-	 * @return void
-	 */
-	public static function admin(): void {
-		$menu = Menu::instance();
-		// Register Menu.
-		add_action( 'admin_menu', array( $menu, 'register' ) );
-		// Load script.
-		add_action( 'admin_enqueue_scripts', array( $menu, 'scripts' ) );
-		// Add module attribute.
-		add_filter( 'script_loader_tag', array( $menu, 'add_module' ), 10, 3 );
+		LogController::instance()->write( 'init', 'Plugin is initialized' );
+		add_action( 'rest_api_init', array( __CLASS__, 'api' ) );
 	}
 
 	public static function api() {
-		Settings::instance();
-		Logs::instance();
-		Posts::instance();
+		SettingController::instance();
 	}
 }

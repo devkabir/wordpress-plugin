@@ -1,16 +1,10 @@
 {
     "recommendations": [
+        "usernamehw.errorlens",
+        "seatonjiang.gitmoji-vscode",
         "devsense.phptools-vscode",
-        "junstyle.php-cs-fixer",
-        "devsense.composer-php-vscode",
-        "heybourn.headwind",
-        "christian-kohler.npm-intellisense",
-        "bradlc.vscode-tailwindcss",
-        "exer7um.vue-3-vscode-snippets",
-        "vue.volar",
-        "johnbillion.vscode-wordpress-hooks",
-        "wordpresstoolbox.wordpress-toolbox",
-        "mehedidracula.php-namespace-resolver",
-        "neilbrayfield.php-docblocker"
+        "blanc-frederic.vs-phpcompanion",
+        "valeryanm.vscode-phpsab",
+        "tintrinh.php-refactor"
     ]
 }
