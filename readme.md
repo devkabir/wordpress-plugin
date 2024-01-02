@@ -21,8 +21,9 @@ A simple WordPress plugin boilerplate for Admin related tasks.
 
 - **node.js** v18.8.0
 - **npm** v8.18.0
-- **PHP** v7.4
+- **PHP** v7.4 or higher
 - **VS Code extension** check recommendations.
+- **bash** Any bash script compatible terminal. You may use Git Bash for this. For **Laragon** Users, You have already all tools, just add to path.
 
 ## For Fresh Start
 

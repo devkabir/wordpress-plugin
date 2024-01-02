@@ -46,5 +46,6 @@ npm install
 npm run build 
 # delete this file
 progress_message "Deleting install.sh..."
+cd ..
 rm install.sh
 
