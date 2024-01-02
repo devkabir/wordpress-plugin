@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# Function to display progress messages
+progress_message() {
+  local message="$1"
+
+  # Define color codes
+  local color_reset="\033[0m"
+  local color_green="\033[32m"
+
+  # Print the colorized message
+  echo -e "[$(date +'%Y-%m-%d %H:%M:%S')] ${color_green}${message}${color_reset}"
+}
+
+# abort on errors
+set -e
+progress_message "Replacing placeholders..."
 # Get the current directory name
 base=${PWD##*/}
 # Convert to Pascal case for namespace
@@ -20,11 +35,16 @@ find ./ -type f \( -name "*.php" -o -name "*.js" -o -name "*.json" -o -name "*.h
 # Search and replace "your_plugin_name" with the current directory name in all PHP, JS, JSON, and HTML files except files in the vendor folder inside src directory
 find ./ -type f \( -name "*.php" -o -name "*.js" -o -name "*.json" -o -name "*.html" \) -not -path "./vendor/*" -not -path "./assets/node_modules/*" -execdir sed -i "s/your_plugin_name/${base//\//\\/}/g" {} \;
 # run composer dump-autoload
+progress_message "Running composer dump-autoload..."
 composer dump-autoload
+# cd into assets
+progress_message "Building assets..."
+cd ./assets
 # run npm install on assets dir
-npm install --prefix ./assets
+npm install 
 # run npm run build on assets dir
-npm run build --prefix ./assets
+npm run build 
 # delete this file
+progress_message "Deleting install.sh..."
 rm install.sh
 
