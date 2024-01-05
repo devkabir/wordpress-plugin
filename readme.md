@@ -66,5 +66,7 @@ composer create-project devkabir/wordpress-plugin:dev-only-admin <your-plugin-na
 
 - How to start
   - [![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
+- Without Music, featuring admin side only
+  - [![Video Title](https://img.youtube.com/vi/_bM5dqUTgNA/0.jpg)](https://www.youtube.com/watch?v=_bM5dqUTgNA)
 - How to debug
   - [![Video Title](https://img.youtube.com/vi/rdTug4q5tEM/0.jpg)](https://www.youtube.com/watch?v=rdTug4q5tEM)
