@@ -64,7 +64,5 @@ For nice error page, install [wp-debugger](https://github.com/devkabir/a-wp-plug
 
 ## For visual learners
 
-### How to start
-[![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
-### Without Music, featuring admin side only
+### Featuring Dev version for admin side only
 [![Video Title](https://img.youtube.com/vi/_bM5dqUTgNA/0.jpg)](https://www.youtube.com/watch?v=_bM5dqUTgNA)
