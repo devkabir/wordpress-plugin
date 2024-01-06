@@ -32,19 +32,19 @@ This is a foundation for building WordPress plugins.
 
 ## For Fresh Start
 
-- Dev version with dummy content
+### Dev version with dummy content
 
 ```bash
 composer create-project devkabir/wordpress-plugin:dev-master <your-plugin-name>
 ```
 
-- Dev version with no content
+### Dev version with no content
 
 ```bash
 composer create-project devkabir/wordpress-plugin:dev-fresh <your-plugin-name>
 ```
 
-- Dev version for admin side only
+### Dev version for admin side only
 
 ```bash
 composer create-project devkabir/wordpress-plugin:dev-only-admin <your-plugin-name>
@@ -60,13 +60,11 @@ composer create-project devkabir/wordpress-plugin:dev-only-admin <your-plugin-na
 
 ## Recommended Plugins
 
-- For nice error page, [wp-debugger](https://github.com/devkabir/wp-debugger)
+For nice error page, install [wp-debugger](https://github.com/devkabir/a-wp-plugin-debugger)
 
 ## For visual learners
 
-- How to start
-  - [![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
-- Without Music, featuring admin side only
-  - [![Video Title](https://img.youtube.com/vi/_bM5dqUTgNA/0.jpg)](https://www.youtube.com/watch?v=_bM5dqUTgNA)
-- How to debug
-  - [![Video Title](https://img.youtube.com/vi/rdTug4q5tEM/0.jpg)](https://www.youtube.com/watch?v=rdTug4q5tEM)
+### How to start
+[![Video Title](https://img.youtube.com/vi/ZXu4Y2Wt3-k/0.jpg)](https://www.youtube.com/watch?v=ZXu4Y2Wt3-k)
+### Without Music, featuring admin side only
+[![Video Title](https://img.youtube.com/vi/_bM5dqUTgNA/0.jpg)](https://www.youtube.com/watch?v=_bM5dqUTgNA)
