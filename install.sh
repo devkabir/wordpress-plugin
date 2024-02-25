@@ -49,4 +49,5 @@ npm run build
 progress_message "Deleting install.sh..."
 cd ..
 rm install.sh
-
+rm -rf .github
+rm -rf .idea
