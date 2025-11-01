@@ -26,9 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action(
 	'plugins_loaded',
 	function (): void {
-
-		// Initialize filesystem early so it's available for all plugin features.
-		\YourPlugin\Filesystem::get_instance();
 	}
 );
 
@@ -43,10 +40,6 @@ add_action(
 add_action(
 	'init',
 	function (): void {
-		// Example: Register custom post type
-		// register_post_type('custom_post', $args);
-
-		// Register shortcodes, taxonomies, or other WordPress features here
 	}
 );
 
@@ -61,10 +54,6 @@ add_action(
 add_action(
 	'admin_menu',
 	function (): void {
-		// Example: Add menu page
-		// add_menu_page('Page Title', 'Menu Title', 'manage_options', 'menu-slug', 'callback_function');
-
-		// Add your admin menu pages here
 	}
 );
 
@@ -80,10 +69,6 @@ add_action(
 add_action(
 	'admin_enqueue_scripts',
 	function (): void {
-		// Example: Enqueue admin stylesheet
-		// wp_enqueue_style('admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin.css');
-
-		// Load your admin scripts and styles here
 	}
 );
 
@@ -98,47 +83,5 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function (): void {
-		// Example: Enqueue frontend stylesheet
-		// wp_enqueue_style('frontend-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
-
-		// Load your frontend scripts and styles here
-	}
-);
-
-/**
- * Hook: save_post
- *
- * Fires after a post has been successfully updated or created.
- * Use this for: Saving custom meta data, triggering notifications, updating related content
- *
- * @param int $post_id The post ID
- * @link https://developer.wordpress.org/reference/hooks/save_post/
- */
-add_action(
-	'save_post',
-	function ( int $post_id ): void {
-		// Example: Save custom meta field
-		// if (isset($_POST['custom_field'])) {
-		// update_post_meta($post_id, 'custom_field_key', sanitize_text_field($_POST['custom_field']));
-		// }
-
-		// Add your save post logic here
-	}
-);
-
-/**
- * Hook: wp_insert_post
- *
- * Fires once a post has been saved (both new and updated posts).
- * Use this for: Similar to save_post, but provides more data via the second parameter
- *
- * @param int $post_id The post ID
- * @link https://developer.wordpress.org/reference/hooks/wp_insert_post/
- */
-add_action(
-	'wp_insert_post',
-	function ( int $post_id ): void {
-		// This hook fires for both new and updated posts
-		// Use this when you need to run logic on any post save operation
 	}
 );
