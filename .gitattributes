@@ -1,0 +1,14 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Ensure setup scripts are executable
+setup.sh eol=lf
+setup.php eol=lf
+
+# Windows batch files
+setup.bat eol=crlf
+
+# Exclude files from export/download
+.gitattributes export-ignore
+.gitignore export-ignore
+.git export-ignore
